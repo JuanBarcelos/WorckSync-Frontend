@@ -29,7 +29,7 @@ export const routes: Routes = [
         component: Employees,
       },
       {
-        path: 'shift',
+        path: 'shifts',
         component: Shift,
       },
       {

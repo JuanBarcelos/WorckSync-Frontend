@@ -4,6 +4,7 @@ main {
   width: 100%;
   height: 100%;
   color: var.$primary-text-color;
+
   .import-header {
     display: flex;
     align-items: center;
@@ -51,7 +52,7 @@ main {
         left: 0;
         top: 0;
         bottom: 0;
-        width: .8rem;
+        width: 0.8rem;
         border-radius: 1rem 0 0 1rem;
       }
 
@@ -64,7 +65,7 @@ main {
       .label {
         font-size: 1.6rem;
         line-height: 2rem;
-        letter-spacing: .03rem;
+        letter-spacing: 0.03rem;
       }
 
       &.blue::before {
@@ -77,6 +78,85 @@ main {
 
       &.red::before {
         background-color: var.$danger;
+      }
+    }
+  }
+
+  .received-container {
+    padding: 2.4rem;
+    border: 2px solid var.$secondary-color;
+    border-radius: 2rem;
+    margin-top: 2.4rem;
+
+    .received-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      .received-title {
+        h3 {
+          font-size: 2.2rem;
+          line-height: 2.8rem;
+        }
+        p {
+          font-size: 1.6rem;
+          line-height: 2rem;
+          font-weight: 300;
+        }
+      }
+    }
+
+    .received-content {
+      padding: 2rem 6.4rem;
+      border: 2px solid var.$border-color;
+      border-radius: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2.4rem;
+
+      .received-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+        .info {
+          display: flex;
+          gap: 1.2rem;
+          align-items: center;
+          i {
+            font-size: 2.4rem;
+            color: var.$primary-color;
+          }
+          p {
+            font-size: 2rem;
+            line-height: 2.4rem;
+            font-weight: 600;
+          }
+        }
+        .status {
+          margin-left: 3.4rem;
+          padding: 0.5rem 1rem;
+          border-radius: 1rem;
+          background-color: var.$primary-color;
+          color: var.$tertiary-color;
+        }
+      }
+      
+      .received-btn {
+        font-size: 2.4rem;
+        color: var.$primary-text-color;
+        padding: 0.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          border: 1px solid var.$secondary-color;
+          background-color: var.$secondary-color;
+          border-radius: 1rem;
+          filter: drop-shadow(0px 2px 4px var.$status-inactive-20);
+          box-shadow: inset 0px -8px 2px var.$status-inactive-20;
+        }
       }
     }
   }

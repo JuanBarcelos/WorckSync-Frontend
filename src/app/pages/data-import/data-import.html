@@ -5,28 +5,55 @@
       <h2>Carregue seus arquivos e processe dados de funcionários com facilidade</h2>
     </div>
   </div>
+
   @if(stats){
-    <div class="cards">
-      <div class="card" [class.blue]="true">
-        <div class="value">{{ stats.totalArquivos }}</div>
-        <div class="label">Total de Arquivos</div>
+  <div class="cards">
+    <div class="card" [class.blue]="true">
+      <div class="value">{{ stats.totalArquivos }}</div>
+      <div class="label">Total de Arquivos</div>
+    </div>
+
+    <div class="card" [class.green]="true">
+      <div class="value">{{ stats.importadosSucesso }}</div>
+      <div class="label">Importados com Sucesso</div>
+    </div>
+
+    <div class="card" [class.red]="true">
+      <div class="value">{{ stats.erros }}</div>
+      <div class="label">Erros ao importar</div>
+    </div>
+
+    <div class="card" [class.blue]="true">
+      <div class="value">{{ stats.totalLinhas }}</div>
+      <div class="label">Total de Linhas</div>
+    </div>
+  </div>
+  }
+
+  <app-input-upload (fileUploaded)="onFileUploaded($event)"></app-input-upload>
+
+  @if(stats){
+    <div class="received-container">
+      <div class="received-header">
+        <div class="received-title">
+          <h3>Arquivos Enviados</h3>
+          <p>Revise seus arquivos enviados antes de processar</p>
+        </div>
+        <app-primary-button label="Processar Dados" [iconUpload]="true"></app-primary-button>
       </div>
 
-      <div class="card" [class.green]="true">
-        <div class="value">{{ stats.importadosSucesso }}</div>
-        <div class="label">Importados com Sucesso</div>
-      </div>
-
-      <div class="card" [class.red]="true">
-        <div class="value">{{ stats.erros }}</div>
-        <div class="label">Erros ao importar</div>
-      </div>
-
-      <div class="card" [class.blue]="true">
-        <div class="value">{{ stats.totalLinhas }}</div>
-        <div class="label">Total de Linhas</div>
+      <div class="received-content">
+        <div class="received-info">
+          <div class="info">
+            <i class="ph ph-check-circle"></i>
+            <p>{{stats.fileName}}</p>
+          </div>
+          <span class="status">Sucesso</span>
+        </div>
+        <div class="received-btn">
+          <i class="ph ph-trash"></i>
+        </div>
       </div>
     </div>
   }
-  <app-input-upload (fileUploaded)="onFileUploaded($event)"></app-input-upload>
 </main>

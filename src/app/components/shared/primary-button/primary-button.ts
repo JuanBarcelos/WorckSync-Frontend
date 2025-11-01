@@ -10,4 +10,5 @@ import { Component, Input } from '@angular/core';
 export class PrimaryButton {
   @Input() label: string = "";
   @Input() icon: boolean = false;
+  @Input() iconUpload: boolean = false;
 }
