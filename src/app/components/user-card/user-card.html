@@ -6,7 +6,7 @@
     <div class="info">
       <h3>{{ user.name }}</h3>
       <p>{{ user.position }}</p>
-      <span>{{ user.status }}</span>
+      <span [ngClass]="user.status">{{ user.status }}</span>
     </div>
 
     <!-- Dropdown -->

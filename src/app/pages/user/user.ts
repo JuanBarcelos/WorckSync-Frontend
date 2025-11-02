@@ -12,9 +12,15 @@ export class User {
   users: UsersCard[] = [
     {
       name: 'Vitor Lima',
-      role: 'Administrador',
+      role: 'User',
       position: 'Gestão de Frotas',
       status: 'Ativo',
+    },
+    {
+      name: 'Vitor Lima',
+      role: 'RH',
+      position: 'Gestão de Frotas',
+      status: 'Inativo',
     },
     {
       name: 'Vitor Lima',
@@ -26,13 +32,10 @@ export class User {
       name: 'Vitor Lima',
       role: 'Administrador',
       position: 'Gestão de Frotas',
-      status: 'Ativo',
-    },
-    {
-      name: 'Vitor Lima',
-      role: 'Administrador',
-      position: 'Gestão de Frotas',
-      status: 'Ativo',
+      status: 'Inativo',
     },
   ];
+
+  activeUsers = this.users.filter((user) => user.status === "Ativo");
+  userAdmin = this.users.filter((user) => user.role === "Administrador");
 }

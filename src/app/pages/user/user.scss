@@ -29,11 +29,42 @@ main {
       gap: 2.4rem;
     }
   }
+
   .cards {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
     gap: 2.4rem;
+  }
+
+  .user-body {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+    margin-bottom: 2.4rem;
+
+    .body-info {
+      padding: 3.2rem;
+      border: 1px solid var.$primary-color;
+      border-radius: 2rem;
+      width: 49.8rem;
+      color: var.$primary-text-color;
+      .info-title{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 2.2rem;
+        line-height: 2.8rem;
+        font-weight: 700;
+        i{
+           font-size: 3.2rem;
+        }
+      }
+      p {
+        font-size: 4.5rem;
+        font-weight: 700;
+      }
+    }
   }
 }

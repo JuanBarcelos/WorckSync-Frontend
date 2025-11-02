@@ -49,6 +49,11 @@
       letter-spacing: 0.03rem;
       color: var.$tertiary-color;
     }
+
+    span.Inativo{
+      background-color: var.$border-color;
+      color: var.$secondary-text-color;
+    }
   }
 }
 
