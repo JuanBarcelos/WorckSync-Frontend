@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-header">
+    <div class="avatar" [style]="{ background: avatarGradient }">
+      {{ user.name[0] }}{{ user.name.split(' ')[1][0] }}
+    </div>
+    <div class="info">
+      <h3>{{ user.name }}</h3>
+      <p>{{ user.position }}</p>
+      <span>{{ user.status }}</span>
+    </div>
+
+    <!-- Dropdown -->
+    <app-dropdown-menu
+      [menuOptions]="['Ver Detalhes', 'Redefinir Senha', 'Alterar Cargo']"
+      (itemSelected)="onMenuAction($event)"
+    >
+      ></app-dropdown-menu
+    >
+  </div>
+  <div class="card-footer">
+    <app-secondary-button
+      label="Desabilitar Usuário"
+      [icon]="true"
+      iconClass="ph ph-user-circle-minus"
+    ></app-secondary-button>
+    <app-primary-button
+      label="Editar Usuário"
+      [icon]="true"
+      iconClass="ph ph-user-circle-gear"
+    ></app-primary-button>
+  </div>
+</div>

@@ -5,6 +5,7 @@ import { Dashboard } from './pages/dashboard/dashboard';
 import { Employees } from './pages/employees/employees';
 import { Shift } from './pages/shift/shift';
 import { DataImport } from './pages/data-import/data-import';
+import { User } from './pages/user/user';
 
 export const routes: Routes = [
   {
@@ -35,6 +36,10 @@ export const routes: Routes = [
       {
         path: 'data-imports',
         component: DataImport,
+      },
+      {
+        path: 'users',
+        component: User,
       },
     ],
   },

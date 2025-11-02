@@ -1,0 +1,16 @@
+<main>
+  <div class="user-header">
+    <div class="title">
+      <h1>Usuários do Sistema</h1>
+      <h2>Gerenciar o acesso e as permissões dos usuários</h2>
+    </div>
+    <div class="header-btns">
+      <app-primary-button label="Add Usuário" [icon]="true" iconClass="ph ph-plus"></app-primary-button>
+    </div>
+  </div>
+  <div class="cards">
+    @for (user of users; track $index) {
+    <app-user-card [user]="user"></app-user-card>
+    }
+  </div>
+</main>
