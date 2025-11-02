@@ -9,4 +9,5 @@ import { Component, Input } from '@angular/core';
 export class SecondaryButton {
   @Input() label: string = "";
   @Input() icon: boolean = false;
+  @Input() iconClass: string = "";
 }

@@ -5,13 +5,21 @@
       <h2>Gerencie os turnos da sua equipe e suas informações</h2>
     </div>
     <div class="header-btns">
-      <app-secondary-button label="Filtros" [icon]="true"></app-secondary-button>
-      <app-primary-button label="Add Turno" [icon]="true"></app-primary-button>
+      <app-secondary-button
+        label="Filtros"
+        [icon]="true"
+        iconClass="ph ph-funnel-simple"
+      ></app-secondary-button>
+      <app-primary-button
+        label="Add Turno"
+        [icon]="true"
+        iconClass="ph ph-plus"
+      ></app-primary-button>
     </div>
   </div>
   <div class="cards">
     @for (shift of shifts; track $index) {
-      <app-shift-card [shift]="shift"></app-shift-card>
+    <app-shift-card [shift]="shift"></app-shift-card>
     }
   </div>
 </main>

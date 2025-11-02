@@ -1,4 +1,3 @@
-import { Employees } from './../../pages/employees/employees';
 import { CommonModule } from '@angular/common';
 import { Component, Input, type OnInit } from '@angular/core';
 import { DropdownMenu } from '../shared/dropdown-menu/dropdown-menu';
