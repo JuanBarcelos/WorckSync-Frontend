@@ -6,6 +6,7 @@ import { Employees } from './pages/employees/employees';
 import { Shift } from './pages/shift/shift';
 import { DataImport } from './pages/data-import/data-import';
 import { User } from './pages/user/user';
+import { WorkdayRecord } from './pages/workday-record/workday-record';
 
 export const routes: Routes = [
   {
@@ -41,10 +42,14 @@ export const routes: Routes = [
         path: 'users',
         component: User,
       },
+      {
+        path: 'workday-records',
+        component: WorkdayRecord,
+      },
     ],
   },
-  // {
-  //   path: '**',
-  //   redirectTo: '/login',
-  // },
+  {
+    path: '**',
+    redirectTo: '/login',
+  },
 ];
