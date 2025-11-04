@@ -1,6 +1,6 @@
 @use '../../../variable.scss' as var;
 
-button{
+button {
   padding-block: 1rem;
   padding-inline: 1.2rem;
 
@@ -12,7 +12,7 @@ button{
   font-size: 1.6rem;
   line-height: 2rem;
   font-weight: bold;
-  color:  var.$tertiary-color;
+  color: var.$tertiary-color;
   cursor: pointer;
 
   display: flex;
@@ -20,11 +20,31 @@ button{
   justify-content: center;
   gap: 1.2rem;
 
-  i{
+  i {
     font-size: 2.4rem;
   }
 
-  &:hover{
-    background-color: #0E9C8A;
+  &:hover {
+    background-color: #0e9c8a;
+  }
+}
+
+.editar-registro {
+  background-color: var.$secondary-color;
+  border: 2px solid var.$secondary-color;
+  color: var.$secondary-text-color;
+
+  &:hover {
+    background-color: #b8f0e7;  
+  }
+}
+
+.cancelar{
+  background-color: var.$danger;
+  border: 2px solid var.$danger;
+  color: var.$tertiary-color;
+
+  &:hover {
+    background-color: #db1600;
   }
 }

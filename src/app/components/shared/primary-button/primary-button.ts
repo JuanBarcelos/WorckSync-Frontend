@@ -11,4 +11,5 @@ export class PrimaryButton {
   @Input() label: string = "";
   @Input() icon: boolean = false;
   @Input() iconClass: string = "";
+  @Input() buttonClass: string = '';
 }

@@ -1,1 +1,7 @@
-<app-time-card></app-time-card>
+<main>
+  <div class="cards">
+    @for (record of timeRecords; track $index) {
+      <app-time-card [record]="record"></app-time-card>
+    }
+  </div>
+</main>

@@ -1,1 +1,44 @@
-<p>jgjhghjghjghjghjgjhgj</p>
+<div class="record-card">
+  <header class="record-header">
+    <div class="record-status" [ngClass]="statusBadgeClass">
+      {{ status }}
+    </div>
+    <h2 class="record-date">{{ record.data }}</h2>
+  </header>
+
+  <div class="record-body" [formGroup]="recordForm">
+    <div class="schedule-item">
+      <label class="item-label"> <i class="ph ph-clock-clockwise"></i> Entrada: </label>
+      <span *ngIf="!isEditing" class="time-display">{{ getDisplayTime('entryTime') }}</span>
+      <input *ngIf="isEditing" type="time" formControlName="entryTime" class="time-input" />
+    </div>
+
+    <div class="schedule-item">
+      <label class="item-label"> <i class="ph ph-coffee"></i> Inicio do Intervalo </label>
+      <span *ngIf="!isEditing" class="time-display">{{ getDisplayTime('startLunch') }}</span>
+      <input *ngIf="isEditing" type="time" formControlName="startLunch" class="time-input" />
+    </div>
+
+    <div class="schedule-item">
+      <label class="item-label"> <i class="ph ph-coffee"></i> Fim do Intervalo </label>
+      <span *ngIf="!isEditing" class="time-display">{{ getDisplayTime('endLunch') }}</span>
+      <input *ngIf="isEditing" type="time" formControlName="endLunch" class="time-input" />
+    </div>
+
+    <div class="schedule-item">
+      <label class="item-label"> <i class="ph ph-clock-counter-clockwise"></i> Saída: </label>
+      <span *ngIf="!isEditing" class="time-display">{{ getDisplayTime('departureTime') }}</span>
+      <input *ngIf="isEditing" type="time" formControlName="departureTime" class="time-input" />
+    </div>
+  </div>
+
+  <footer class="record-footer">
+    <app-primary-button
+      (click)="onButtonClick()"
+      [label]="buttonText"
+      [icon]="true"
+      iconClass="ph ph-clock-user"
+      [buttonClass]="buttonBackgroundClass"
+    ></app-primary-button>
+  </footer>
+</div>

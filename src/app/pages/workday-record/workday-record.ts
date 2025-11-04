@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Record, TimeCard } from '../../components/time-card/time-card';
+import { TimeCard, type TimeRecord } from '../../components/time-card/time-card';
 
 @Component({
   selector: 'app-workday-record',
@@ -8,7 +8,7 @@ import { Record, TimeCard } from '../../components/time-card/time-card';
   styleUrl: './workday-record.scss',
 })
 export class WorkdayRecord {
-  records: Record[] = [
+  timeRecords: TimeRecord[] = [
     {
       data: '01/10/2025',
       schedules: {

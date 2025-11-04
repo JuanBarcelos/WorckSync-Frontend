@@ -1,0 +1,92 @@
+@use '../../variable.scss' as var;
+
+.record-card {
+  border-radius: 1rem;
+  border: 1px solid var.$secondary-color;
+  width: 350px;
+  padding: 2.4rem;
+  overflow: hidden;
+}
+
+// --- Cabeçalho ---
+.record-header {
+  border-bottom: 1px solid var.$border-color;
+  .record-status {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.4rem;
+    letter-spacing: 0.03rem;
+    line-height: 1.8rem;
+    font-weight: 500;
+
+    // Classes de Status (Regra 1)
+    &.completo {
+      background-color: var.$primary-color;
+      color: var.$tertiary-color;
+    }
+    &.incompleto {
+      background-color: var.$status-alert-bg;
+      color: var.$secondary-text-color;
+    }
+    &.sem-registro {
+      background-color: var.$danger;
+      color: var.$tertiary-color;
+    }
+  }
+  .record-date {
+    font-size: 2.8rem;
+    line-height: 3.2rem;
+    letter-spacing: 0.03rem;
+    font-weight: 500;
+    color: var.$primary-text-color;
+    margin-block: 2.4rem;
+  }
+}
+
+// --- Corpo ---
+.record-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  margin-block: 2.4rem;
+  .schedule-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.6rem;
+    color: var.$primary-text-color;
+
+    .item-label {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+
+      i {
+        font-size: 2.4rem;
+      }
+    }
+
+    // Estilo dos Inputs quando em modo de edição
+    .time-input {
+      all: unset;
+      font-size: 1.6rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border: 1px solid var.$border-color;
+      border-radius: 0.6rem;
+      text-align: right;
+      background-color: #f9f9f9;
+
+      &:focus {
+        outline: 1px solid var.$primary-color;
+        border-color: var.$secondary-color;
+      }
+    }
+  }
+}
+
+// ---footer---
+.record-footer{
+
+}
