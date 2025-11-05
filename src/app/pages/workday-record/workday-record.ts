@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { TimeCard, type TimeRecord } from '../../components/time-card/time-card';
+import { SecondaryButton } from '../../components/shared/secondary-button/secondary-button';
+import { PrimaryButton } from '../../components/shared/primary-button/primary-button';
 
 @Component({
   selector: 'app-workday-record',
-  imports: [TimeCard],
+  imports: [TimeCard, SecondaryButton, PrimaryButton],
   templateUrl: './workday-record.html',
   styleUrl: './workday-record.scss',
 })
@@ -20,11 +22,30 @@ export class WorkdayRecord {
     },
     {
       data: '02/10/2025',
-      schedules: { entryTime: '', startLunch: '', endLunch: '', departureTime: '' },
+      schedules: {
+        entryTime: '',
+        startLunch: '',
+        endLunch: '',
+        departureTime: '',
+      },
     },
     {
       data: '03/10/2025',
-      schedules: { entryTime: '07:00', startLunch: '12:00', endLunch: '13:00', departureTime: '' },
+      schedules: {
+        entryTime: '07:00',
+        startLunch: '12:00',
+        endLunch: '13:00',
+        departureTime: '',
+      },
+    },
+    {
+      data: '04/10/2025',
+      schedules: {
+        entryTime: '07:00',
+        startLunch: '12:00',
+        endLunch: '13:00',
+        departureTime: '15:00',
+      },
     },
   ];
 }

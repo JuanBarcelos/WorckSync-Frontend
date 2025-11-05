@@ -1,4 +1,38 @@
 <main>
+  <div class="timeRecord-header">
+    <div class="title">
+      <h1>Registros de Jornada</h1>
+      <h2>Visualizar e gerenciar registros de presença dos funcionários</h2>
+    </div>
+    <div class="timeRecord-btn">
+      <app-secondary-button
+        label="Filtros"
+        [icon]="true"
+        iconClass="ph ph-funnel-simple"
+      ></app-secondary-button>
+      <app-primary-button
+        label="Baixar Relatório"
+        [icon]="true"
+        iconClass="ph ph-file-arrow-down"
+      ></app-primary-button>
+    </div>
+  </div>
+
+  <div class="timeRecord-body">
+    <div class="timeRecord-info">
+      <h4>Total de Horas no Mês</h4>
+      <p>44.7h</p>
+    </div>
+    <div class="timeRecord-info timeRecord-border">
+      <h4>Dias Trabalhados</h4>
+      <p>23/31</p>
+    </div>
+    <div class="timeRecord-info">
+      <h4>Total de Hora Extra</h4>
+      <p>5h</p>
+    </div>
+  </div>
+
   <div class="cards">
     @for (record of timeRecords; track $index) {
       <app-time-card [record]="record"></app-time-card>
