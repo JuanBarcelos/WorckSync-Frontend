@@ -2,8 +2,8 @@
   <section class="hero">
     <img src="hero.svg" alt="foto de um escritório com uma mesa e varias cadeirais" />
   </section>
-  <section class="form-section">
-    <div class="wrapper">
+  <section class="form-section" >
+    <div class="wrapper" [formGroup]="userForm">
       <div>
         <h1>Sign in</h1>
         <h2>Faça login para gerenciar sua equipe com eficiência.</h2>
@@ -11,16 +11,16 @@
       <form action="">
         <div class="input-group">
           <label for="">Email</label>
-          <input type="email" placeholder="Entre com seu email" />
+          <input type="email" placeholder="Entre com seu email" formControlName="email"/>
         </div>
         <div class="input-group">
           <label for="">Senha</label>
-          <input type="password" placeholder="************" />
+          <input type="password" placeholder="************" formControlName="password" />
         </div>
         <a href="#">Esqueci minha senha</a>
       </form>
-      <app-primary-button label="Sign in"></app-primary-button>
+        <app-primary-button label="Sign in" [isDisabled]="userForm.invalid" (click)="Login()"></app-primary-button>
     </div>
-    <img class="logo" src="logo.svg" alt="logo da empresa WorckSync">
+    <img class="logo" src="logo.svg" alt="logo da empresa WorckSync" />
   </section>
 </main>

@@ -12,4 +12,5 @@ export class PrimaryButton {
   @Input() icon: boolean = false;
   @Input() iconClass: string = "";
   @Input() buttonClass: string = '';
+  @Input() isDisabled: boolean = false;
 }

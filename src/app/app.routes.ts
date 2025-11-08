@@ -7,6 +7,7 @@ import { Shift } from './pages/shift/shift';
 import { DataImport } from './pages/data-import/data-import';
 import { User } from './pages/user/user';
 import { WorkdayRecord } from './pages/workday-record/workday-record';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
   {
@@ -21,6 +22,9 @@ export const routes: Routes = [
   {
     path: '',
     component: Layout,
+    //proteger as rotas filhas
+    canActivateChild: [authGuard],
+    //rotas filhas
     children: [
       {
         path: 'dashboard',

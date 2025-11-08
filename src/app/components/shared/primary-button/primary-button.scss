@@ -27,6 +27,11 @@ button {
   &:hover {
     background-color: #0e9c8a;
   }
+
+  &:disabled {
+    background-color: var.$border-color;
+    cursor: not-allowed;
+  }
 }
 
 .editar-registro {
@@ -35,11 +40,11 @@ button {
   color: var.$secondary-text-color;
 
   &:hover {
-    background-color: #b8f0e7;  
+    background-color: #b8f0e7;
   }
 }
 
-.cancelar{
+.cancelar {
   background-color: var.$danger;
   border: 2px solid var.$danger;
   color: var.$tertiary-color;
