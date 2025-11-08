@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import { EmployerCard, type EmployeesCard } from '../../components/employer-card/employer-card';
+import { IEmployee } from './../../interfaces/employer';
+import { Component, inject, OnInit } from '@angular/core';
+import { EmployerCard } from '../../components/employer-card/employer-card';
 import { SecondaryButton } from "../../components/shared/secondary-button/secondary-button";
 import { PrimaryButton } from "../../components/shared/primary-button/primary-button";
+import { EmployerService } from '../../services/employer';
 
 @Component({
   selector: 'app-employees',
@@ -9,39 +11,20 @@ import { PrimaryButton } from "../../components/shared/primary-button/primary-bu
   templateUrl: './employees.html',
   styleUrl: './employees.scss',
 })
-export class Employees {
-  employees: EmployeesCard[] = [
-    {
-      name: 'Juan Barcelos',
-      role: 'Logística',
-      email: 'juan@juan.com.br',
-      phone: '+55 21 99999-9999',
-      turn: 'Logística-Noite',
-      status: 'Ativo',
-    },
-    {
-      name: 'Vitor Lima',
-      role: 'Gestão de Frotas',
-      email: 'vitor@vitor.com.br',
-      phone: '+55 21 99999-9999',
-      turn: 'Gestão',
-      status: 'Ferias',
-    },
-    {
-      name: 'Jefferson Andrade',
-      role: 'Gestão de Logístico',
-      email: 'jefferson@jefferson.com.br',
-      phone: '+55 21 99999-9999',
-      turn: 'Logística-Manhã',
-      status: 'Inativo',
-    },
-    {
-      name: 'Jefferson Andrade',
-      role: 'Gestão de Logístico',
-      email: 'jefferson@jefferson.com.br',
-      phone: '+55 21 99999-9999',
-      turn: 'Logística-Manhã',
-      status: 'Inativo',
-    },
-  ];
+export class Employees implements OnInit {
+  private readonly _employerService = inject(EmployerService);
+
+  employees:IEmployee[] = [];
+
+
+  ngOnInit(): void {
+    this._employerService.getEmployees().subscribe({
+      next: (response) => {
+        this.employees = response.data;
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
+  }
 }

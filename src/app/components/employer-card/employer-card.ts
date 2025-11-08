@@ -1,15 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, type OnInit } from '@angular/core';
 import { DropdownMenu } from '../shared/dropdown-menu/dropdown-menu';
-
-export interface EmployeesCard {
-  name: string;
-  role: string;
-  email: string;
-  phone: string;
-  turn: string;
-  status: string;
-}
+import type { IEmployee } from '../../interfaces/employer';
 
 @Component({
   selector: 'app-employer-card',
@@ -18,7 +10,7 @@ export interface EmployeesCard {
   imports: [CommonModule, DropdownMenu],
 })
 export class EmployerCard implements OnInit {
-  @Input() employees!: EmployeesCard;
+  @Input() employees!: IEmployee;
   dropdownOpen = false;
   avatarGradient: string = '';
 

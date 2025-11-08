@@ -6,7 +6,7 @@
     </div>
     <div class="info">
       <h3>{{ employees.name }}</h3>
-      <p>{{ employees.role }}</p>
+      <p>{{ employees.department }}</p>
     </div>
 
     <!-- Dropdown -->
@@ -39,12 +39,17 @@
         <i class="ph ph-clock-user"></i>
         <p>Turno:</p>
       </div>
-      <p>{{ employees.turn }}</p>
+      <p>{{ employees.shift.name }}</p>
     </div>
   </div>
 
   <!-- Footer -->
   <div class="card-footer">
-    <span class="status" [ngClass]="employees.status">{{ employees.status }}</span>
+    @if(employees.isActive){
+      <span class="status Ativo">Ativo</span>
+    }@else {
+      <span class="status Inativo">Inativo</span>
+    }
+
   </div>
 </div>
