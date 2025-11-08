@@ -5,7 +5,7 @@
     </div>
     <div class="info">
       <h3>{{ shift.name }}</h3>
-      <p>{{ shift.role }}</p>
+      <p>{{ shift.code }}</p>
     </div>
 
     <!-- Dropdown -->
@@ -18,9 +18,13 @@
   </div>
 
   <div class="card-status">
-    <span class="status" [ngClass]="shift.status">{{ shift.status }}</span>
+    @if(shift.isActive){
+    <span class="status Ativo">Ativo</span>
+    }@else {
+    <span class="status Inativo">Inativo</span>
+    }
   </div>
-  
+
   <div class="card-body">
     <div class="start-time">
       <div class="icon">
@@ -34,14 +38,14 @@
         <i class="ph ph-clock"></i>
         <p>Saida:</p>
       </div>
-      <p>{{ shift.departureTime }}</p>
+      <p>{{ shift.endTime }}</p>
     </div>
     <div class="lunch-time">
       <div class="icon">
         <i class="ph ph-coffee"></i>
         <p>Intervalo:</p>
       </div>
-      <p>{{ shift.lunchTime }}</p>
+      <p>{{ shift.lunchStartTime }} - {{ shift.lunchEndTime }}</p>
     </div>
   </div>
 </div>

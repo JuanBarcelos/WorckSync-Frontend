@@ -1,4 +1,5 @@
-import type { IShiftSuccessResponse } from "./shift-success-response copy";
+import type { IMeta } from "./meta-interface";
+import type { IShift } from "./shift";
 
 export interface IEmployee {
   id: string;
@@ -15,16 +16,8 @@ export interface IEmployee {
   shiftId: string;
   createdAt: string;
   updatedAt: string;
-  shift: IShiftSuccessResponse;
+  shift: IShift;
 }
-
-export interface IMeta {
-  total: number;
-  pages: number;
-  page: number;
-  limit: number;
-}
-
 
 export interface IEmployerSuccessResponse {
   data: IEmployee[];

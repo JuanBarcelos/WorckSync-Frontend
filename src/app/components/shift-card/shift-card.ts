@@ -1,15 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, type OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DropdownMenu } from "../shared/dropdown-menu/dropdown-menu";
-
-export interface ShiftsCard {
-  name: string;
-  role: string;
-  status: string;
-  startTime: string;
-  departureTime: string;
-  lunchTime: string;
-}
+import type { IShift } from '../../interfaces/shift';
 
 @Component({
   selector: 'app-shift-card',
@@ -18,7 +10,7 @@ export interface ShiftsCard {
   styleUrl: './shift-card.scss',
 })
 export class ShiftCard implements OnInit {
-  @Input() shift!: ShiftsCard;
+  @Input() shift!: IShift;
   dropdownOpen = false;
   avatarGradient: string = '';
 
