@@ -6,6 +6,7 @@ main {
   color: var.$primary-text-color;
 
   .import-header {
+    width: 155rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -141,7 +142,7 @@ main {
           color: var.$tertiary-color;
         }
       }
-      
+
       .received-btn {
         font-size: 2.4rem;
         color: var.$primary-text-color;

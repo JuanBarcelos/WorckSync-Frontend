@@ -5,34 +5,69 @@
     </div>
     <nav class="navbar" aria-label="Main navigation">
       <ul class="navbar-list">
-        <li class="list-item active">
+        <li
+          class="list-item"
+          routerLink="dashboard"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <i class="ph ph-pulse"></i>
-          <a href="" class="item">Dashboard</a>
+          <a class="item">Dashboard</a>
         </li>
-        <li class="list-item">
+        <li
+          class="list-item"
+          routerLink="employees"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <i class="ph ph-users-three"></i>
-          <a href="" class="item">Funcionário</a>
+          <a class="item">Funcionário</a>
         </li>
-        <li class="list-item">
+        <li
+          class="list-item"
+          routerLink="shifts"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <i class="ph ph-clock-user"></i>
-          <a href="" class="item">Turnos</a>
+          <a class="item">Turnos</a>
         </li>
-        <li class="list-item">
+        <li
+          class="list-item"
+          routerLink="data-imports"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <i class="ph ph-file-arrow-up"></i>
-          <a href="" class="item">Importações</a>
+          <a class="item">Importações</a>
         </li>
-        <li class="list-item">
+        <li
+          class="list-item"
+          routerLink="workday-records"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <i class="ph ph-clipboard-text"></i>
-          <a href="" class="item">Registro de Jornada</a>
+          <a class="item">Registro de Jornada</a>
         </li>
 
-        <li class="list-item">
+        <li
+          class="list-item"
+          routerLink=""
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <i class="ph ph-files"></i>
-          <a href="" class="item">Relatórios</a>
+          <a class="item">Relatórios</a>
         </li>
-        <li class="list-item">
+        <li
+          class="list-item"
+          routerLink="users"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
           <i class="ph ph-user-list"></i>
-          <a href="" class="item">Usuários</a>
+          <a class="item">Usuários</a>
         </li>
       </ul>
     </nav>
