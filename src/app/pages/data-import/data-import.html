@@ -9,7 +9,7 @@
   @if(stats){
   <div class="cards">
     <div class="card" [class.blue]="true">
-      <div class="value">{{ stats.totalArquivos }}</div>
+      <div class="value">{{ stats.totalFile }}</div>
       <div class="label">Total de Arquivos</div>
     </div>
 
@@ -19,12 +19,12 @@
     </div>
 
     <div class="card" [class.red]="true">
-      <div class="value">{{ stats.erros }}</div>
+      <div class="value">{{ stats.errors }}</div>
       <div class="label">Erros ao importar</div>
     </div>
 
     <div class="card" [class.blue]="true">
-      <div class="value">{{ stats.totalLinhas }}</div>
+      <div class="value">{{ stats.totalRecords }}</div>
       <div class="label">Total de Linhas</div>
     </div>
   </div>
@@ -48,7 +48,7 @@
             <i class="ph ph-check-circle"></i>
             <p>{{stats.fileName}}</p>
           </div>
-          <span class="status">Sucesso</span>
+          <span class="status">{{stats.status}}</span>
         </div>
         <div class="received-btn">
           <i class="ph ph-trash"></i>
