@@ -3,7 +3,9 @@
   <div class="modal">
     <header>
       <h2>Filtro de Funcionários</h2>
-      <button class="close" (click)="close.emit()">×</button>
+      <button class="close" (click)="close.emit()">
+        <i class="ph ph-x"></i>
+      </button>
     </header>
 
     <div class="content" [formGroup]="employerForm">
@@ -20,7 +22,7 @@
     </div>
 
     <footer>
-      <button class="apply" (click)="applyFilters()">Aplicar</button>
+      <app-primary-button label="Selecionar" (click)="applyFilters()" [isDisabled]="employerForm.invalid"></app-primary-button>
     </footer>
   </div>
 </div>

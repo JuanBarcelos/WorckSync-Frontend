@@ -9,10 +9,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { PrimaryButton } from "../primary-button/primary-button";
 
 @Component({
   selector: 'app-filter-modal',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, PrimaryButton],
   templateUrl: './filter-modal.html',
   styleUrl: './filter-modal.scss',
 })
@@ -46,7 +47,7 @@ export class FilterModal implements OnInit {
 
   applyFilters() {
     const selectedEmployee = this.employees.find(e => e.id === this.employerForm.get('employerId')?.value);
-    
+
     const filters = {
       employerName: selectedEmployee ? selectedEmployee.name : null,
       employerId: this.employerForm.get('employerId')?.value,
