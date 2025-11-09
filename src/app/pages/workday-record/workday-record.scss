@@ -4,32 +4,85 @@ main {
   width: 100%;
   height: 100%;
   color: var.$primary-text-color;
-  .timeRecord-header{
+
+  .time-records-title {
+    width: 150rem;
+    h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      line-height: 5rem;
+      letter-spacing: 0.03rem;
+    }
+    h2 {
+      font-size: 2.4rem;
+      font-weight: normal;
+      line-height: 3rem;
+    }
+  }
+
+  .wrapper {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .time-records-body {
+      width: 75rem;
+      height: 60rem;
+      background-color: var.$tertiary-color;
+      border-radius: 1.5rem;
+      box-shadow: 0px 4px 4px #d9d9d9;
+      padding: 9.1rem 7.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3.2rem;
+      text-align: center;
+      letter-spacing: 0.03rem;
+      i {
+        font-size: 15rem;
+        color: var.$primary-color;
+      }
+      h3 {
+        font-size: 4.5rem;
+        line-height: 4.9rem;
+      }
+      p {
+        font-size: 2.8rem;
+        line-height: 3.2rem;
+      }
+      app-primary-button {
+        width: 70%;
+      }
+    }
+  }
+
+  .timeRecord-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 3.2rem;
-    .title{
+    .title {
       h1 {
         font-size: 3.2rem;
         font-weight: 700;
         line-height: 4rem;
-        letter-spacing: .03rem;
+        letter-spacing: 0.03rem;
       }
-      h2{
+      h2 {
         font-size: 2rem;
         font-weight: normal;
         line-height: 2.6rem;
       }
     }
-    .timeRecord-btn{
+    .timeRecord-btn {
       display: flex;
       align-items: center;
       gap: 2.4rem;
     }
   }
 
-  .timeRecord-body{
+  .timeRecord-body {
     height: 15rem;
     border-radius: 2rem;
     border: 2px solid var.$secondary-color;
@@ -41,7 +94,7 @@ main {
       width: 50rem;
       padding: 2.4rem 3.2rem;
       color: var.$primary-text-color;
-      letter-spacing: .03rem;
+      letter-spacing: 0.03rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -49,21 +102,19 @@ main {
         font-size: 2.4rem;
         font-weight: 500;
         line-height: 2.8rem;
-        margin-bottom: .4rem;
+        margin-bottom: 0.4rem;
       }
-      p{
+      p {
         font-size: 4.5rem;
         font-weight: bold;
       }
     }
-    .timeRecord-border{
+    .timeRecord-border {
       border-left: 2px solid var.$secondary-color;
       border-right: 2px solid var.$secondary-color;
     }
   }
-
-
-  .cards{
+  .cards {
     display: flex;
     flex-wrap: wrap;
     align-items: center;

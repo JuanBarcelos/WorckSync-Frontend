@@ -1,6 +1,6 @@
-<button [class]="buttonClass" [disabled]="isDisabled">
+<button [class]="buttonClass" [disabled]="isDisabled" (click)="handleClick()">
   @if(icon){
-    <i [class]="iconClass"></i>
+  <i [class]="iconClass"></i>
   }
   {{ label }}
 </button>

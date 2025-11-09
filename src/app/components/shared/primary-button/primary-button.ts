@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-primary-button',
@@ -13,4 +13,9 @@ export class PrimaryButton {
   @Input() iconClass: string = "";
   @Input() buttonClass: string = '';
   @Input() isDisabled: boolean = false;
+  @Output() openModal = new EventEmitter<void>();
+
+  handleClick() {
+    this.openModal.emit();
+  }
 }

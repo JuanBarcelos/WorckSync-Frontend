@@ -1,0 +1,27 @@
+@if(visible){
+<div class="overlay">
+  <div class="modal">
+    <header>
+      <h2>Filtro de Funcionários</h2>
+      <button class="close" (click)="close.emit()">×</button>
+    </header>
+
+    <div class="content" [formGroup]="employerForm">
+      <label>
+        Funcionário:
+        <select formControlName="employerId">
+          @for (emp of employees; track $index) {
+            <option [value]="emp.id">
+              {{ emp.name }}
+            </option>
+          }
+        </select>
+      </label>
+    </div>
+
+    <footer>
+      <button class="apply" (click)="applyFilters()">Aplicar</button>
+    </footer>
+  </div>
+</div>
+}

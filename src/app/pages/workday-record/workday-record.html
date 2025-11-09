@@ -1,7 +1,8 @@
 <main>
+  @if(timeRecords.length > 0){
   <div class="timeRecord-header">
     <div class="title">
-      <h1>Registros de Jornada</h1>
+      <h1>Registros do {{filters.employerName}}</h1>
       <h2>Visualizar e gerenciar registros de presença dos funcionários</h2>
     </div>
     <div class="timeRecord-btn">
@@ -35,7 +36,31 @@
 
   <div class="cards">
     @for (record of timeRecords; track $index) {
-      <app-time-card [record]="record"></app-time-card>
+    <app-time-card [record]="record"></app-time-card>
     }
   </div>
+  }@else {
+  <div class="time-records-title">
+    <h1>Registros de Jornada</h1>
+    <h2>Visualizar e gerenciar registros de presença dos funcionários</h2>
+  </div>
+  <div class="wrapper">
+    <div class="time-records-body">
+      <i class="ph ph-users"></i>
+      <div class="body-title">
+        <h3>Escolher funcionário</h3>
+        <p>Selecione um funcionário para ver seus registros de horas.</p>
+      </div>
+      <app-primary-button
+        label="Selecionar Funcionário"
+        (openModal)="openModal()"
+      ></app-primary-button>
+    </div>
+  </div>
+  }
+  <app-filter-modal
+    [visible]="showModal"
+    (close)="closeModal()"
+    (apply)="handleApplyFilters($event)"
+  ></app-filter-modal>
 </main>
