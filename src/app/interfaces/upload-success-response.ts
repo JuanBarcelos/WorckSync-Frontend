@@ -7,7 +7,7 @@ export interface ImportInfo {
   totalRecords: number;
   processedRecords: number;
   failedRecords: number;
-  errors: any;
+  errors: any[];
   startDate: string | null;
   endDate: string | null;
   processedAt: string | null;

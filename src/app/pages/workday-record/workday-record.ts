@@ -4,6 +4,7 @@ import { SecondaryButton } from '../../components/shared/secondary-button/second
 import { PrimaryButton } from '../../components/shared/primary-button/primary-button';
 import { FilterModal } from "../../components/shared/filter-modal/filter-modal";
 import { TimeRecordsService } from '../../services/time-records';
+import dayjs from 'dayjs';
 
 @Component({
   selector: 'app-workday-record',
@@ -37,7 +38,7 @@ export class WorkdayRecord {
   };
 } {
   return {
-    data: record.date,
+    data: dayjs(record.date).format("DD/MM/YYYY"),
     schedules: {
       entryTime: record.clockIn1 || null,
       startLunch: record.clockOut1 || null,

@@ -1,8 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-dropdown-menu',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './dropdown-menu.html',
   styleUrl: './dropdown-menu.scss',
 })
