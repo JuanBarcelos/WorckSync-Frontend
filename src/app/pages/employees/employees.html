@@ -14,6 +14,7 @@
         label="Add Funcionário"
         [icon]="true"
         iconClass="ph ph-plus"
+        (openModal)="openModal()"
       ></app-primary-button>
     </div>
   </div>
@@ -23,3 +24,8 @@
     }
   </div>
 </main>
+
+<app-employer-modal
+  [visible]="showModal"
+  (close)="closeModal()"
+></app-employer-modal>

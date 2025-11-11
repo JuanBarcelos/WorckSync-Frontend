@@ -11,7 +11,7 @@ export class UserService {
   private readonly _httpClient = inject(HttpClient);
 
   validateUser():Observable<IAuthSuccessResponse> {
-    return this._httpClient.get<IAuthSuccessResponse>('http://localhost:3333/api/auth/protected');
+    return this._httpClient.get<IAuthSuccessResponse>('http://localhost:3333/api/auth/profile');
   }
 
   Login(email: string, password: string): Observable<ILoginSuccessResponse> {
