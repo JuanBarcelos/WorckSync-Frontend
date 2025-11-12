@@ -5,6 +5,7 @@ import { PrimaryButton } from '../../components/shared/primary-button/primary-bu
 import { FilterModal } from "../../components/shared/filter-modal/filter-modal";
 import { TimeRecordsService } from '../../services/time-records';
 import dayjs from 'dayjs';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-workday-record',
@@ -52,7 +53,7 @@ export class WorkdayRecord {
   handleApplyFilters(filters: any){
     this.filters = filters;
 
-    this._timeRecordService.getTimeRecordsByEmployer(filters.employerId).subscribe({
+    this._timeRecordService.getTimeRecordsByEmployer(filters.employerId).pipe(take(1)).subscribe({
       next: (response) => {
         const formattedRecords = response.map((record: any) => this.transformRecord(record));
         this.timeRecords = formattedRecords;

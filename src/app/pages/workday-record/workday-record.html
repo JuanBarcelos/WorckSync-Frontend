@@ -35,7 +35,7 @@
   </div>
 
   <div class="cards">
-    @for (record of timeRecords; track $index) {
+    @for (record of timeRecords; track record.data) {
     <app-time-card [record]="record"></app-time-card>
     }
   </div>
@@ -64,5 +64,5 @@
     (close)="closeModal()"
     (apply)="handleApplyFilters($event)"
   ></app-filter-modal>
-  
+
 </main>

@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="cards">
-    @for (employer of employees; track $index) {
+    @for (employer of employees; track employer.id) {
     <app-employer-card [employees]="employer"></app-employer-card>
     }
   </div>

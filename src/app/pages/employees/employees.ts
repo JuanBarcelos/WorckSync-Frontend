@@ -5,6 +5,7 @@ import { SecondaryButton } from '../../components/shared/secondary-button/second
 import { PrimaryButton } from '../../components/shared/primary-button/primary-button';
 import { EmployerService } from '../../services/employer';
 import { EmployerModal } from '../../components/employer-modal/employer-modal';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-employees',
@@ -19,7 +20,7 @@ export class Employees implements OnInit {
   showModal = false;
 
   ngOnInit(): void {
-    this._employerService.getEmployees().subscribe({
+    this._employerService.getEmployees().pipe(take(1)).subscribe({
       next: (response) => {
         this.employees = response.data;
       },

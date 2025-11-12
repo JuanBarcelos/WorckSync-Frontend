@@ -5,6 +5,7 @@ import { ShiftCard } from '../../components/shift-card/shift-card';
 import type { IShift } from '../../interfaces/shift';
 import { ShiftService } from '../../services/shift';
 import { ShiftModal } from "../../components/shift-modal/shift-modal";
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-shift',
@@ -18,7 +19,7 @@ export class Shift implements OnInit {
   showModal = false;
 
   ngOnInit(): void {
-    this._shiftService.getShiftAll().subscribe({
+    this._shiftService.getShiftAll().pipe(take(1)).subscribe({
       next: (response) => {
         this.shifts = response.data;
       },
