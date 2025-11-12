@@ -8,42 +8,43 @@
       </button>
     </header>
     <div class="content">
-      <form>
+      <form [formGroup]="employerForm">
         <div class="input-group">
           <label for="IDEmployer">ID da folha de ponto</label>
-          <input name="IDEmployer" type="text" placeholder="Campo IDUsuário na na tabela de registro"/>
+          <input name="IDEmployer" type="text" placeholder="Campo IDUsuário na na tabela de registro" formControlName="IDEmployer"/>
         </div>
         <div class="input-group">
           <label for="name">Nome</label>
-          <input name="name" type="text" placeholder="Nome do Funcionário"/>
+          <input name="name" type="text" placeholder="Nome do Funcionário" formControlName="name"/>
         </div>
         <div class="input-group">
           <label for="email">Email</label>
-          <input name="email" type="email" placeholder="Entre com seu email"/>
+          <input name="email" type="email" placeholder="Entre com seu email" formControlName="email"/>
         </div>
         <div class="input-group">
           <label for="phone">Telefone</label>
-          <input name="phone" type="tel" placeholder="(00) 00000-0000"/>
+          <input name="phone" type="tel" placeholder="(00) 00000-0000" formControlName="phone"/>
         </div>
         <div class="input-group">
           <label for="document">CPF</label>
-          <input name="document" type="text" placeholder="000.000.000-00"/>
+          <input name="document" type="text" placeholder="000.000.000-00"
+          formControlName="document"/>
         </div>
         <div class="input-group">
           <label for="position">Cargo</label>
-          <input name="position" type="text" placeholder="Cargo exercido pelo funcionário"/>
+          <input name="position" type="text" placeholder="Cargo exercido pelo funcionário" formControlName="position"/>
         </div>
         <div class="input-group">
           <label for="department">Departamento</label>
-          <input name="department" type="text" placeholder="Departamento do funcionário"/>
+          <input name="department" type="text" placeholder="Departamento do funcionário" formControlName="department" />
         </div>
         <div class="input-group">
           <label for="admissionDate">Data de Admissão</label>
-          <input name="admissionDate" type="text" placeholder="Data de Admissão"/>
+          <input name="admissionDate" type="text" placeholder="Data de Admissão" formControlName="admissionDate" />
         </div>
         <div class="input-group">
           <label for="shiftId">Turno</label>
-          <select name="shiftId">
+          <select name="shiftId" formControlName="shiftId" >
             <option value="" selected>Selecione o Turno</option>
           </select>
         </div>
@@ -51,7 +52,7 @@
     </div>
 
     <footer>
-      <app-primary-button label="Cadastrar Funcionário"></app-primary-button>
+      <app-primary-button label="Cadastrar Funcionário" [isDisabled]="employerForm.invalid" ></app-primary-button>
     </footer>
   </main>
 </section>
