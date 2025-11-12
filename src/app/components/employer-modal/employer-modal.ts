@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PrimaryButton } from "../../components/shared/primary-button/primary-button";
+import { PrimaryButton } from "../shared/primary-button/primary-button";
 
 @Component({
   selector: 'app-employer-modal',

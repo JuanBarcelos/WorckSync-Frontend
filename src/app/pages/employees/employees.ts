@@ -4,7 +4,7 @@ import { EmployerCard } from '../../components/employer-card/employer-card';
 import { SecondaryButton } from '../../components/shared/secondary-button/secondary-button';
 import { PrimaryButton } from '../../components/shared/primary-button/primary-button';
 import { EmployerService } from '../../services/employer';
-import { EmployerModal } from '../employer-modal/employer-modal';
+import { EmployerModal } from '../../components/employer-modal/employer-modal';
 
 @Component({
   selector: 'app-employees',

@@ -4,25 +4,35 @@ import { PrimaryButton } from '../../components/shared/primary-button/primary-bu
 import { ShiftCard } from '../../components/shift-card/shift-card';
 import type { IShift } from '../../interfaces/shift';
 import { ShiftService } from '../../services/shift';
+import { ShiftModal } from "../../components/shift-modal/shift-modal";
 
 @Component({
   selector: 'app-shift',
-  imports: [SecondaryButton, PrimaryButton, ShiftCard],
+  imports: [SecondaryButton, PrimaryButton, ShiftCard, ShiftModal],
   templateUrl: './shift.html',
   styleUrl: './shift.scss',
 })
-export class Shift implements OnInit{
+export class Shift implements OnInit {
   private readonly _shiftService = inject(ShiftService);
-  shifts: IShift[] = []
+  shifts: IShift[] = [];
+  showModal = false;
 
   ngOnInit(): void {
-      this._shiftService.getShiftAll().subscribe({
-        next: (response) => {
-          this.shifts = response.data;
-        },
-        error: (err) => {
-          console.log(err)
-        }
-      })
+    this._shiftService.getShiftAll().subscribe({
+      next: (response) => {
+        this.shifts = response.data;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  openModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
   }
 }

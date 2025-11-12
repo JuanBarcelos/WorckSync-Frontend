@@ -1,0 +1,100 @@
+@use '../../variable.scss' as var;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 1.5rem;
+  width: 50rem;
+  padding: 2.4rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      line-height: 3.2rem;
+      letter-spacing: 0.03rem;
+    }
+
+    .close {
+      background: transparent;
+      border: none;
+      font-size: 2.4rem;
+      cursor: pointer;
+    }
+  }
+
+  .content {
+    margin-top: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    color: var.$primary-text-color;
+    form {
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: flex-start;
+
+        label {
+          font-size: 1.6rem;
+          font-weight: 600;
+          line-height: 2rem;
+          letter-spacing: 0.1rem;
+        }
+        input {
+          padding-block: 1rem;
+          padding-inline: 1.2rem;
+          background-color: #ffffff;
+          border: 1px solid #c2c6ce;
+          border-radius: 1rem;
+          width: 100%;
+          margin-bottom: 1.6rem;
+          outline: none;
+
+          &:active {
+            outline: auto;
+            border: 1px solid var.$primary-color;
+            outline-color: var.$primary-color;
+          }
+        }
+        select {
+          all: unset;
+          border-radius: 1rem;
+          padding: 1rem 1.2rem;
+          background-color: #ffffff;
+          border: 1px solid #c2c6ce;
+          outline: none;
+          width: 95%;
+        }
+      }
+      a {
+        font-size: 1.6rem;
+        font-weight: 600;
+        line-height: 2rem;
+        letter-spacing: 0.15rem;
+        text-decoration: none;
+        color: #c2c6ce;
+      }
+    }
+  }
+
+  footer {
+    margin-top: 2.4rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
