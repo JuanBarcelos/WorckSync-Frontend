@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, type OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, type OnInit } from '@angular/core';
 import { DropdownMenu } from '../../shared/dropdown-menu/dropdown-menu';
 import { IEmployee } from '../../../interfaces/employer';
 
@@ -11,6 +11,8 @@ import { IEmployee } from '../../../interfaces/employer';
 })
 export class EmployerCard implements OnInit {
   @Input() employees!: IEmployee;
+  @Output() action = new EventEmitter<{ type: string; employer: IEmployee }>();
+
   dropdownOpen = false;
   avatarGradient: string = '';
 
@@ -35,8 +37,8 @@ export class EmployerCard implements OnInit {
     return this.gradients[index];
   }
 
-  onMenuAction(action: string) {
-    console.log('Ação escolhida:', action);
+  onMenuAction(option: string) {
     // aqui você pode implementar lógica específica
+    this.action.emit({ type: option, employer: this.employees });
   }
 }

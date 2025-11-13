@@ -20,7 +20,7 @@
   </div>
   <div class="cards">
     @for (employer of employees; track employer.id) {
-    <app-employer-card [employees]="employer"></app-employer-card>
+    <app-employer-card [employees]="employer"  (action)="onCardAction($event)"></app-employer-card>
     }
   </div>
 </main>
@@ -29,4 +29,5 @@
   [visible]="showModal"
   (close)="closeModal()"
   (apply)="saveEmployer($event)"
+  [employer]="selectedEmployer"
 ></app-employer-modal>

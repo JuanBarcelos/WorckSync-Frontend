@@ -18,6 +18,7 @@ export class Employees implements OnInit {
 
   employees: IEmployee[] = [];
   showModal = false;
+  selectedEmployer?: IEmployee;
 
   ngOnInit(): void {
     this.getEmployer();
@@ -25,10 +26,22 @@ export class Employees implements OnInit {
 
   openModal() {
     this.showModal = true;
+    this.selectedEmployer = undefined;
   }
 
   closeModal() {
     this.showModal = false;
+  }
+
+  onCardAction(event: {type: string; employer: IEmployee}){
+    if (event.type === 'Editar') {
+      this.selectedEmployer = event.employer;
+      this.showModal = true;
+    } else if (event.type === 'Excluir') {
+      console.log(event.employer.id);
+    } else if (event.type === 'Detalhes') {
+      console.log(event.employer);
+    }
   }
 
   saveEmployer(newEmployer: INewEmployerRequest) {
@@ -58,5 +71,15 @@ export class Employees implements OnInit {
           console.log(err);
         },
       });
+  }
+
+  saveNewEmployer(employer: IEmployee) {
+    // se tiver selectedEmployer, é edição
+    if (this.selectedEmployer) {
+      // this.updateEmployer(employer);
+    } else {
+      // this.createEmployer(employer);
+    }
+    this.closeModal();
   }
 }
