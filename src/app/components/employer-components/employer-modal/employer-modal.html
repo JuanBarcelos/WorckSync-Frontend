@@ -2,7 +2,7 @@
 <section class="overlay">
   <main class="modal">
     <header>
-      <h2>Cadastro de Funcionários</h2>
+      <h2>{{ employer ? 'Atualizar de Funcionários' : 'Cadastro de Funcionários'}}</h2>
       <button class="close" (click)="close.emit()">
         <i class="ph ph-x"></i>
       </button>
@@ -55,7 +55,7 @@
     </div>
 
     <footer>
-      <app-primary-button label="Cadastrar Funcionário" [isDisabled]="employerForm.invalid" (click)="applyEmployer()"></app-primary-button>
+      <app-primary-button [label]="employer ? 'Atualizar de Funcionários' : 'Cadastrar Funcionário'" [isDisabled]="employerForm.invalid" (click)="applyEmployer()"></app-primary-button>
     </footer>
   </main>
 </section>

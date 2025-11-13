@@ -17,4 +17,12 @@ export class EmployerService {
     return this._httpClient.post<INewEmployerResponse>('http://localhost:3333/api/employees', employer);
   }
 
+  updateEmployer(id: string, employer: INewEmployerRequest): Observable<INewEmployerResponse>{
+    return this._httpClient.put<INewEmployerResponse>(`http://localhost:3333/api/employees/${id}`,employer)
+  }
+
+  deleteEmployer(id: string){
+    return this._httpClient.delete(`http://localhost:3333/api/employees/${id}`)
+  }
+
 }

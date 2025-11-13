@@ -18,6 +18,7 @@ export class Shift implements OnInit {
 
   shifts: IShift[] = [];
   showModal = false;
+  selectedShift?: IShift;
 
   ngOnInit(): void {
     this.getShift();
@@ -31,9 +32,50 @@ export class Shift implements OnInit {
     this.showModal = false;
   }
 
-  saveShift(newShift: INewShiftRequest) {
+  onCardAction(event: { type: string; shift: IShift }) {
+    if (event.type === 'Editar') {
+      this.selectedShift = event.shift;
+      this.showModal = true;
+    } else if (event.type === 'Excluir') {
+      this.deleteShift(event.shift.id);
+    } else if (event.type === 'Detalhes') {
+      console.log(event.shift);
+    }
+  }
+
+  saveNewShift(newShift: INewShiftRequest) {
     this._shiftService
       .saveShift(newShift)
+      .pipe(take(1))
+      .subscribe({
+        next: () => {
+          this.closeModal();
+          this.getShift();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+  }
+
+  deleteShift(id: string) {
+    this._shiftService
+      .deleteShift(id)
+      .pipe(take(1))
+      .subscribe({
+        next: () => {
+          this.closeModal();
+          this.getShift();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+  }
+
+  updateShift(id: string, newEmployer: INewShiftRequest) {
+    this._shiftService
+      .updateShift(id, newEmployer)
       .pipe(take(1))
       .subscribe({
         next: () => {
@@ -58,5 +100,13 @@ export class Shift implements OnInit {
           console.log(err);
         },
       });
+  }
+
+  saveShift(shift: IShift) {
+    if (this.selectedShift) {
+      this.updateShift(this.selectedShift.id, shift);
+    } else {
+      this.saveNewShift(shift);
+    }
   }
 }

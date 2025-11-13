@@ -20,7 +20,7 @@
   </div>
   <div class="cards">
     @for (shift of shifts; track shift.id) {
-    <app-shift-card [shift]="shift"></app-shift-card>
+    <app-shift-card [shift]="shift" (action)="onCardAction($event)"></app-shift-card>
     }
   </div>
 </main>
@@ -29,4 +29,5 @@
   [visible]="showModal"
   (close)="closeModal()"
   (apply)="saveShift($event)"
+  [shift]="selectedShift"
 ></app-shift-modal>

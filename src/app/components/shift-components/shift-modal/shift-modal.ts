@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, type OnChanges } from '@angular/core';
 import { PrimaryButton } from '../../shared/primary-button/primary-button';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import type { INewShiftRequest } from '../../../interfaces/shift';
+import type { INewShiftRequest, IShift } from '../../../interfaces/shift';
 
 @Component({
   selector: 'app-shift-modal',
@@ -9,8 +9,9 @@ import type { INewShiftRequest } from '../../../interfaces/shift';
   templateUrl: './shift-modal.html',
   styleUrl: './shift-modal.scss',
 })
-export class ShiftModal {
+export class ShiftModal implements OnChanges{
   @Input() visible = false;
+  @Input() shift?: IShift;
   @Output() close = new EventEmitter<void>();
   @Output() apply = new EventEmitter<any>();
 
@@ -24,6 +25,19 @@ export class ShiftModal {
     toleranceMinutes: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
   });
+
+  ngOnChanges(): void {
+    if(this.shift) {
+      this.shiftForm.patchValue({
+        ...this.shift,
+        toleranceMinutes: String(this.shift.toleranceMinutes),
+      });
+
+    }else{
+      this.shiftForm.reset();
+    }
+
+  }
 
   applyShift() {
     if(this.shiftForm.invalid) return;

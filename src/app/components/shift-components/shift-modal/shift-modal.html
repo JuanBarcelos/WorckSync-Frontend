@@ -2,7 +2,7 @@
 <section class="overlay">
   <main class="modal">
     <header>
-      <h2>Cadastro de Funcionários</h2>
+      <<h2>{{ shift ? 'Atualizar de Turno' : 'Cadastro de Turno'}}</h2>
       <button class="close" (click)="close.emit()">
         <i class="ph ph-x"></i>
       </button>
@@ -86,7 +86,7 @@
 
     <footer>
       <app-primary-button
-        label="Cadastrar Turno"
+        [label]="shift ? 'Atualizar de Turno' : 'Cadastrar Turno'"
         [isDisabled]="shiftForm.invalid"
         (click)="applyShift()"
       ></app-primary-button>

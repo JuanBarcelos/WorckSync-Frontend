@@ -16,4 +16,13 @@ export class ShiftService {
   saveShift(shift: INewShiftRequest): Observable<INewShiftResponse> {
     return this._httpClient.post<INewShiftResponse>('http://localhost:3333/api/shifts', shift);
   }
+
+  updateShift(id: string,shift: INewShiftRequest): Observable<INewShiftResponse> {
+    return this._httpClient.put<INewShiftResponse>(`http://localhost:3333/api/shifts/${id}`, shift);
+  }
+
+  deleteShift(id: string) {
+    return this._httpClient.delete(`http://localhost:3333/api/shifts/${id}`);
+  }
+
 }

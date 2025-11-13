@@ -33,18 +33,18 @@ export class Employees implements OnInit {
     this.showModal = false;
   }
 
-  onCardAction(event: {type: string; employer: IEmployee}){
+  onCardAction(event: { type: string; employer: IEmployee }) {
     if (event.type === 'Editar') {
       this.selectedEmployer = event.employer;
       this.showModal = true;
     } else if (event.type === 'Excluir') {
-      console.log(event.employer.id);
+      this.deleteEmployer(event.employer.id);
     } else if (event.type === 'Detalhes') {
       console.log(event.employer);
     }
   }
 
-  saveEmployer(newEmployer: INewEmployerRequest) {
+  saveNewEmployer(newEmployer: INewEmployerRequest) {
     this._employerService
       .saveEmployer(newEmployer)
       .pipe(take(1))
@@ -59,8 +59,38 @@ export class Employees implements OnInit {
       });
   }
 
+  update(id: string, newEmployer: INewEmployerRequest) {
+    this._employerService
+      .updateEmployer(id, newEmployer)
+      .pipe(take(1))
+      .subscribe({
+        next: () => {
+          this.closeModal();
+          this.getEmployer();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+  }
+
+  deleteEmployer(id: string) {
+    this._employerService
+      .deleteEmployer(id)
+      .pipe(take(1))
+      .subscribe({
+        next: () => {
+          this.closeModal();
+          this.getEmployer();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+  }
+
   getEmployer() {
-     this._employerService
+    this._employerService
       .getEmployees()
       .pipe(take(1))
       .subscribe({
@@ -73,13 +103,12 @@ export class Employees implements OnInit {
       });
   }
 
-  saveNewEmployer(employer: IEmployee) {
+  saveEmployer(employer: IEmployee) {
     // se tiver selectedEmployer, é edição
     if (this.selectedEmployer) {
-      // this.updateEmployer(employer);
+      this.update(this.selectedEmployer.id, employer);
     } else {
-      // this.createEmployer(employer);
+      this.saveNewEmployer(employer);
     }
-    this.closeModal();
   }
 }

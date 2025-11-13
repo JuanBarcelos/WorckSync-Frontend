@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DropdownMenu } from "../../shared/dropdown-menu/dropdown-menu";
 import type { IShift } from '../../../interfaces/shift';
 
@@ -11,6 +11,8 @@ import type { IShift } from '../../../interfaces/shift';
 })
 export class ShiftCard implements OnInit {
   @Input() shift!: IShift;
+  @Output() action = new EventEmitter<{ type: string; shift: IShift }>();
+
   dropdownOpen = false;
   avatarGradient: string = '';
 
@@ -35,8 +37,8 @@ export class ShiftCard implements OnInit {
     return this.gradients[index];
   }
 
-  onMenuAction(action: string) {
-    console.log('Ação escolhida:', action);
-    // aqui você pode implementar lógica específica
+  onMenuAction(option: string) {
+   // aqui você pode implementar lógica específica
+    this.action.emit({ type: option, shift: this.shift });
   }
 }
