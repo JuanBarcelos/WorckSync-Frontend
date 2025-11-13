@@ -25,4 +25,8 @@
   </div>
 </main>
 
-<app-shift-modal [visible]="showModal" (close)="closeModal()"></app-shift-modal>
+<app-shift-modal
+  [visible]="showModal"
+  (close)="closeModal()"
+  (apply)="saveShift($event)"
+></app-shift-modal>

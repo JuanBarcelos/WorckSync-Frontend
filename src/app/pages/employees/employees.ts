@@ -1,11 +1,11 @@
-import { IEmployee } from './../../interfaces/employer';
+import { IEmployee, type INewEmployerRequest } from './../../interfaces/employer';
 import { Component, inject, OnInit } from '@angular/core';
-import { EmployerCard } from '../../components/employer-card/employer-card';
 import { SecondaryButton } from '../../components/shared/secondary-button/secondary-button';
 import { PrimaryButton } from '../../components/shared/primary-button/primary-button';
 import { EmployerService } from '../../services/employer';
-import { EmployerModal } from '../../components/employer-modal/employer-modal';
+import { EmployerModal } from '../../components/employer-components/employer-modal/employer-modal';
 import { take } from 'rxjs';
+import { EmployerCard } from '../../components/employer-components/employer-card/employer-card';
 
 @Component({
   selector: 'app-employees',
@@ -20,14 +20,7 @@ export class Employees implements OnInit {
   showModal = false;
 
   ngOnInit(): void {
-    this._employerService.getEmployees().pipe(take(1)).subscribe({
-      next: (response) => {
-        this.employees = response.data;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    this.getEmployer();
   }
 
   openModal() {
@@ -36,5 +29,34 @@ export class Employees implements OnInit {
 
   closeModal() {
     this.showModal = false;
+  }
+
+  saveEmployer(newEmployer: INewEmployerRequest) {
+    this._employerService
+      .saveEmployer(newEmployer)
+      .pipe(take(1))
+      .subscribe({
+        next: () => {
+          this.closeModal();
+          this.getEmployer();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+  }
+
+  getEmployer() {
+     this._employerService
+      .getEmployees()
+      .pipe(take(1))
+      .subscribe({
+        next: (response) => {
+          this.employees = response.data;
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
 }

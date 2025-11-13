@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { DropdownMenu } from "../shared/dropdown-menu/dropdown-menu";
-import type { IShift } from '../../interfaces/shift';
+import { DropdownMenu } from "../../shared/dropdown-menu/dropdown-menu";
+import type { IShift } from '../../../interfaces/shift';
 
 @Component({
   selector: 'app-shift-card',

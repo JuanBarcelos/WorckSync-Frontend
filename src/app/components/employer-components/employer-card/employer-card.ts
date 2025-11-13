@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, type OnInit } from '@angular/core';
-import { DropdownMenu } from '../shared/dropdown-menu/dropdown-menu';
-import type { IEmployee } from '../../interfaces/employer';
+import { DropdownMenu } from '../../shared/dropdown-menu/dropdown-menu';
+import { IEmployee } from '../../../interfaces/employer';
 
 @Component({
   selector: 'app-employer-card',

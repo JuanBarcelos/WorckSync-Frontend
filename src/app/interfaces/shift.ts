@@ -1,6 +1,36 @@
-import type { IMeta } from "./meta-interface";
+import type { IMeta } from './meta-interface';
 
-export interface IShift{
+export interface INewShiftRequest {
+  name: string;
+  code: string;
+  startTime: string;
+  endTime: string;
+  lunchStartTime: string;
+  lunchEndTime: string;
+  workDays: number[];
+  toleranceMinutes: number;
+  overtimeAllowed: boolean;
+  description: string;
+}
+
+export interface INewShiftResponse {
+  id: string;
+  name: string;
+  code: string;
+  startTime: string;
+  endTime: string;
+  lunchStartTime: string;
+  lunchEndTime: string;
+  workDays: string;
+  toleranceMinutes: number;
+  overtimeAllowed: boolean;
+  description: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IShift {
   id: string;
   name: string;
   code: string;

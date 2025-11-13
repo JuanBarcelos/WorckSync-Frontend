@@ -1,0 +1,96 @@
+@if(visible){
+<section class="overlay">
+  <main class="modal">
+    <header>
+      <h2>Cadastro de Funcionários</h2>
+      <button class="close" (click)="close.emit()">
+        <i class="ph ph-x"></i>
+      </button>
+    </header>
+    <div class="content">
+      <form [formGroup]="shiftForm">
+        <div class="input-group">
+          <label for="name">Nome</label>
+          <input
+            name="name"
+            type="text"
+            placeholder="Nome do Funcionário"
+            formControlName="name"
+          />
+        </div>
+        <div class="input-group">
+          <label for="code">Código</label>
+          <input
+            name="code"
+            type="text"
+            placeholder="Abreviação do Nome do turno"
+            formControlName="code"
+          />
+        </div>
+        <div class="input-group">
+          <label for="startTime">Horário de Entrada</label>
+          <input
+            name="startTime"
+            type="text"
+            placeholder="00:00"
+            formControlName="startTime"
+          />
+        </div>
+        <div class="input-group">
+          <label for="endTime">Horário de saída</label>
+          <input
+            name="endTime"
+            type="text"
+            placeholder="00:00"
+            formControlName="endTime"
+          />
+        </div>
+        <div class="input-group">
+          <label for="lunchStartTime">Horário de Inicio do Intervalo</label>
+          <input
+            name="lunchStartTime"
+            type="text"
+            placeholder="00:00"
+            formControlName="lunchStartTime"
+          />
+        </div>
+        <div class="input-group">
+          <label for="lunchEndTime">Horário de Fim do Intervalo</label>
+          <input
+            name="lunchEndTime"
+            type="text"
+            placeholder="00:00"
+            formControlName="lunchEndTime"
+          />
+        </div>
+        <div class="input-group">
+          <label for="toleranceMinutes">Tolerância de Atraso (em minutos)</label>
+          <input
+            name="toleranceMinutes"
+            type="text"
+            placeholder="Escreva em minutos EX: 15"
+            formControlName="toleranceMinutes"
+          />
+        </div>
+        <div class="input-group">
+          <label for="description">Descrição</label>
+          <input
+            name="description"
+            type="text"
+            placeholder="Escreva uma breve descrição sobre o turno"
+            formControlName="description"
+          />
+        </div>
+      </form>
+    </div>
+
+    <footer>
+      <app-primary-button
+        label="Cadastrar Turno"
+        [isDisabled]="shiftForm.invalid"
+        (click)="applyShift()"
+      ></app-primary-button>
+    </footer>
+  </main>
+</section>
+}

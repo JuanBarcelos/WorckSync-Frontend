@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import type { IShiftSuccessResponse } from '../interfaces/shift';
+import type { INewShiftRequest, INewShiftResponse, IShiftSuccessResponse } from '../interfaces/shift';
 import type { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,5 +11,9 @@ export class ShiftService {
 
   getShiftAll(): Observable<IShiftSuccessResponse> {
     return this._httpClient.get<IShiftSuccessResponse>('http://localhost:3333/api/shifts');
+  }
+
+  saveShift(shift: INewShiftRequest): Observable<INewShiftResponse> {
+    return this._httpClient.post<INewShiftResponse>('http://localhost:3333/api/shifts', shift);
   }
 }

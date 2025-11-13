@@ -46,13 +46,16 @@
           <label for="shiftId">Turno</label>
           <select name="shiftId" formControlName="shiftId" >
             <option value="" selected>Selecione o Turno</option>
+            @for (shift of shifts; track shift.id) {
+              <option [value]="shift.id">{{shift.name}}</option>
+            }
           </select>
         </div>
       </form>
     </div>
 
     <footer>
-      <app-primary-button label="Cadastrar Funcionário" [isDisabled]="employerForm.invalid" ></app-primary-button>
+      <app-primary-button label="Cadastrar Funcionário" [isDisabled]="employerForm.invalid" (click)="applyEmployer()"></app-primary-button>
     </footer>
   </main>
 </section>
