@@ -176,4 +176,6 @@ export class TimeCard implements OnInit, OnChanges {
   transformDate(date: string) {
     return dayjs(date).locale('pt-br').format("DD/MM/YYYY")
   }
+
+  
 }

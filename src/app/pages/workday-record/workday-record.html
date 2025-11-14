@@ -22,15 +22,15 @@
   <div class="timeRecord-body">
     <div class="timeRecord-info">
       <h4>Total de Horas no Mês</h4>
-      <p>44.7h</p>
+      <p>{{totalWorkedHours(timeRecords)}}</p>
     </div>
     <div class="timeRecord-info timeRecord-border">
       <h4>Dias Trabalhados</h4>
-      <p>23/31</p>
+      <p>{{`${timeRecords.length}/${diasNoMesAtual}`}}</p>
     </div>
     <div class="timeRecord-info">
       <h4>Total de Hora Extra</h4>
-      <p>5h</p>
+      <p>{{totalOvertimeMinutes(timeRecords)}}</p>
     </div>
   </div>
 

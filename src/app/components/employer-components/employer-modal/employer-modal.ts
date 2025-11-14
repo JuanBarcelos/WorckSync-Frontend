@@ -13,6 +13,7 @@ import type { IEmployee, INewEmployerRequest } from '../../../interfaces/employe
 import { take } from 'rxjs';
 import { ShiftService } from '../../../services/shift';
 import type { IShift } from '../../../interfaces/shift';
+import dayjs from 'dayjs';
 
 @Component({
   selector: 'app-employer-modal',
@@ -48,7 +49,10 @@ export class EmployerModal implements OnInit, OnChanges{
 
   ngOnChanges(): void {
     if (this.employer) {
-      this.employerForm.patchValue(this.employer)
+      this.employerForm.patchValue({
+        ...this.employer,
+        admissionDate: dayjs(this.employer.admissionDate).locale('pt-br').format("DD/MM/YYYY")
+      })
     } else {
       this.employerForm.reset();
     }

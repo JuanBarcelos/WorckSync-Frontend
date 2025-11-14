@@ -5,8 +5,12 @@ import { PrimaryButton } from '../../components/shared/primary-button/primary-bu
 import { FilterModal } from '../../components/shared/filter-modal/filter-modal';
 import { TimeRecordsService } from '../../services/time-records';
 import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
 import { take } from 'rxjs';
 import type { ITimeRecords } from '../../interfaces/timeRecords';
+import { calculateTotalHours, calculateTotalOvertimeHours } from '../../utils/calculate-total-hours';
+
+dayjs.extend(duration);
 
 @Component({
   selector: 'app-workday-record',
@@ -20,6 +24,7 @@ export class WorkdayRecord {
   timeRecords: ITimeRecords[] = [];
   showModal = false;
   filters: any = null;
+  diasNoMesAtual = dayjs().daysInMonth();
 
   openModal() {
     this.showModal = true;
@@ -27,26 +32,6 @@ export class WorkdayRecord {
 
   closeModal() {
     this.showModal = false;
-  }
-
-  transformRecord(record: any): {
-    data: string;
-    schedules: {
-      entryTime?: string | null;
-      startLunch?: string | null;
-      endLunch?: string | null;
-      departureTime?: string | null;
-    };
-  } {
-    return {
-      data: dayjs(record.date).format('DD/MM/YYYY'),
-      schedules: {
-        entryTime: record.clockIn1 || null,
-        startLunch: record.clockOut1 || null,
-        endLunch: record.clockIn2 || null,
-        departureTime: record.clockOut2 || null,
-      },
-    };
   }
 
   handleApplyFilters(filters: any) {
@@ -78,5 +63,13 @@ export class WorkdayRecord {
         },
         error: (err) => console.error('Erro ao atualizar registro', err),
       });
+  }
+
+  totalWorkedHours(records: ITimeRecords[]){
+    return calculateTotalHours(records);
+  }
+
+  totalOvertimeMinutes(records: ITimeRecords[]){
+    return calculateTotalOvertimeHours(records);
   }
 }
