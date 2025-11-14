@@ -12,4 +12,8 @@ export class TimeRecordsService {
   getTimeRecordsByEmployer(employeeId: string): Observable<ITimeRecords[]> {
     return this._httpClient.get<ITimeRecords[]>(`http://localhost:3333/api/timerecords/${employeeId}`)
   }
+
+  updateTimeRecord(timeRecord: ITimeRecords): Observable<ITimeRecords> {
+    return this._httpClient.put<ITimeRecords>(`http://localhost:3333/api/timerecords/update`, timeRecord)
+  }
 }

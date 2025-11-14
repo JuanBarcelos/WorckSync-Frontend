@@ -35,8 +35,8 @@
   </div>
 
   <div class="cards">
-    @for (record of timeRecords; track record.data) {
-    <app-time-card [record]="record"></app-time-card>
+    @for (record of timeRecords; track record.id) {
+    <app-time-card [record]="record" (recordUpdated)="onRecordUpdated($event)"></app-time-card>
     }
   </div>
   }@else {

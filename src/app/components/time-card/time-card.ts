@@ -7,47 +7,21 @@ import {
   Input,
   Output,
   SimpleChanges,
-  type OnChanges,
-  type OnInit,
+  OnChanges,
+  OnInit,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   NonNullableFormBuilder,
-  FormControl,
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { PrimaryButton } from '../shared/primary-button/primary-button';
-
-// Define a interface principal para o seu registro
-export interface TimeRecord {
-  data: string;
-  schedules: {
-    entryTime?: string | null;
-    startLunch?: string | null;
-    endLunch?: string | null;
-    departureTime?: string | null;
-  };
-}
+import type { ITimeRecords } from '../../interfaces/timeRecords';
+import dayjs from 'dayjs';
 
 // Tipos para o status derivado
 export type RecordStatus = 'Completo' | 'Incompleto' | 'Sem Registro';
-
-// Interface para o formulário reativo
-interface ScheduleForm {
-  entryTime: FormControl<string | null>;
-  startLunch: FormControl<string | null>;
-  endLunch: FormControl<string | null>;
-  departureTime: FormControl<string | null>;
-}
-
-// Tipo para os valores do formulário
-type ScheduleFormValue = {
-  entryTime: string | null;
-  startLunch: string | null;
-  endLunch: string | null;
-  departureTime: string | null;
-};
 
 @Component({
   selector: 'app-time-card',
@@ -61,15 +35,15 @@ export class TimeCard implements OnInit, OnChanges {
   private destroyRef = inject(DestroyRef);
 
   // --- Entradas & Saídas ---
-  @Input({ required: true }) record!: TimeRecord;
-  @Output() recordUpdated = new EventEmitter<TimeRecord>();
+  @Input({ required: true }) record!: ITimeRecords;
+  @Output() recordUpdated = new EventEmitter<ITimeRecords>();
 
   // --- Estado Interno ---
   public isEditing = false;
   public isDirty = false;
   public status: RecordStatus = 'Sem Registro';
-  public recordForm!: FormGroup<ScheduleForm>;
-  private originalSchedulesValue!: ScheduleFormValue;
+  public recordForm!: FormGroup;
+  private originalValue!: Partial<ITimeRecords>;
 
   ngOnInit(): void {
     this.initializeForm();
@@ -88,25 +62,23 @@ export class TimeCard implements OnInit, OnChanges {
    * (Re)Inicializa o formulário com base no @Input 'record'
    */
   private initializeForm(): void {
-    const schedules = this.record.schedules;
-
     // Cria o formulário reativo
     this.recordForm = this.fb.group({
-      entryTime: [schedules.entryTime || null],
-      startLunch: [schedules.startLunch || null],
-      endLunch: [schedules.endLunch || null],
-      departureTime: [schedules.departureTime || null],
+      clockIn1: [this.record.clockIn1 || null],
+      clockOut1: [this.record.clockOut1 || null],
+      clockIn2: [this.record.clockIn2 || null],
+      clockOut2: [this.record.clockOut2 || null],
     });
 
     // Armazena o estado original para verificar o 'isDirty' (Regra 5)
-    this.originalSchedulesValue = this.recordForm.getRawValue();
+    this.originalValue = this.recordForm.getRawValue();
 
     // Calcula o status inicial (Regra 1)
     this.updateStatus();
 
     // Escuta mudanças no formulário para atualizar o 'isDirty'
     this.recordForm.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((values) => {
-      this.isDirty = JSON.stringify(values) !== JSON.stringify(this.originalSchedulesValue);
+      this.isDirty = JSON.stringify(values) !== JSON.stringify(this.originalValue);
     });
 
     // O formulário começa desabilitado
@@ -117,12 +89,12 @@ export class TimeCard implements OnInit, OnChanges {
    * Deriva o status com base nos horários (Regra 1)
    */
   private updateStatus(): void {
-    const schedules = this.originalSchedulesValue || this.record.schedules;
+    const schedules = this.originalValue || this.record;
     const allFields = [
-      schedules.entryTime,
-      schedules.startLunch,
-      schedules.endLunch,
-      schedules.departureTime,
+      schedules.clockIn1,
+      schedules.clockOut1,
+      schedules.clockIn2,
+      schedules.clockOut2,
     ];
     const filledCount = allFields.filter(Boolean).length;
 
@@ -146,9 +118,7 @@ export class TimeCard implements OnInit, OnChanges {
    * Retorna a classe CSS para o button background
    */
   get buttonBackgroundClass(): string {
-    const tt =  this.buttonText.toLowerCase().replace(' ', '-');
-    console.log(tt)
-    return tt
+    return this.buttonText.toLowerCase().replace(' ', '-');
   }
 
   /**
@@ -168,15 +138,16 @@ export class TimeCard implements OnInit, OnChanges {
     if (this.isEditing) {
       if (this.isDirty) {
         // --- Lógica de SALVAR ---
-        const updatedSchedules = this.recordForm.getRawValue();
+        const updatedValues = this.recordForm.getRawValue();
 
         this.recordUpdated.emit({
           ...this.record,
-          schedules: updatedSchedules,
+          ...updatedValues, // sobrescreve os campos editados
+          updatedAt: new Date().toISOString(), // opcional: atualiza timestamp
         });
 
         // O novo "original" é o que acabamos de salvar
-        this.originalSchedulesValue = updatedSchedules;
+        this.originalValue = updatedValues;
         this.isDirty = false;
         this.isEditing = false;
         this.recordForm.disable();
@@ -186,7 +157,7 @@ export class TimeCard implements OnInit, OnChanges {
         this.isEditing = false;
         this.recordForm.disable();
         // Reseta o formulário para os valores originais
-        this.recordForm.reset(this.originalSchedulesValue);
+        this.recordForm.reset(this.originalValue);
       }
     } else {
       // --- Lógica de EDITAR ---
@@ -198,7 +169,11 @@ export class TimeCard implements OnInit, OnChanges {
   /**
    * Formata a exibição do horário, mostrando '--:--' se estiver vazio.
    */
-  public getDisplayTime(controlName: keyof ScheduleForm): string {
+  public getDisplayTime(controlName: keyof ITimeRecords): string {
     return this.recordForm.get(controlName)?.value || '--:--';
+  }
+
+  transformDate(date: string) {
+    return dayjs(date).locale('pt-br').format("DD/MM/YYYY")
   }
 }
