@@ -9,7 +9,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { PrimaryButton } from "../primary-button/primary-button";
+import { PrimaryButton } from '../primary-button/primary-button';
 
 @Component({
   selector: 'app-filter-modal',
@@ -22,6 +22,7 @@ export class FilterModal implements OnInit {
 
   employerForm = new FormGroup({
     employerId: new FormControl('', [Validators.required]),
+    status: new FormControl<string[]>([]),
   });
 
   @Input() visible = false;
@@ -29,6 +30,11 @@ export class FilterModal implements OnInit {
   @Output() apply = new EventEmitter<any>();
 
   employees: IEmployee[] = [];
+  statusOptions = [
+    { label: 'Completo', value: 'Completo' },
+    { label: 'Incompleto', value: 'Incompleto' },
+    { label: 'Sem Registro', value: 'Sem Registro' },
+  ];
 
   ngOnInit() {
     this.loadEmployees();
@@ -45,12 +51,26 @@ export class FilterModal implements OnInit {
     });
   }
 
+  toggleStatus(value: string, checked: boolean) {
+  const current = this.employerForm.value.status ?? [];
+
+  const updated = checked
+    ? [...current, value] // adiciona
+    : current.filter(item => item !== value); // remove
+
+  this.employerForm.get('status')?.setValue(updated);
+}
+
+
   applyFilters() {
-    const selectedEmployee = this.employees.find(e => e.id === this.employerForm.get('employerId')?.value);
+    const selectedEmployee = this.employees.find(
+      (e) => e.id === this.employerForm.get('employerId')?.value
+    );
 
     const filters = {
       employerName: selectedEmployee ? selectedEmployee.name : null,
       employerId: this.employerForm.get('employerId')?.value,
+      status: this.employerForm.get('status')?.value ?? [],
     };
 
     this.apply.emit(filters);

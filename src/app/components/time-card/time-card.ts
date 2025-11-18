@@ -11,11 +11,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import {
-  NonNullableFormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { NonNullableFormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { PrimaryButton } from '../shared/primary-button/primary-button';
 import type { ITimeRecords } from '../../interfaces/timeRecords';
 import dayjs from 'dayjs';
@@ -115,6 +111,13 @@ export class TimeCard implements OnInit, OnChanges {
   }
 
   /**
+   * Retorna os status para os filtros
+   */
+  get recordStatus(): RecordStatus {
+    return this.status;
+  }
+
+  /**
    * Retorna a classe CSS para o button background
    */
   get buttonBackgroundClass(): string {
@@ -174,8 +177,6 @@ export class TimeCard implements OnInit, OnChanges {
   }
 
   transformDate(date: string) {
-    return dayjs(date).locale('pt-br').format("DD/MM/YYYY")
+    return dayjs(date).locale('pt-br').format('DD/MM/YYYY');
   }
-
-  
 }

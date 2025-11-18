@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-secondary-button',
@@ -10,4 +10,9 @@ export class SecondaryButton {
   @Input() label: string = "";
   @Input() icon: boolean = false;
   @Input() iconClass: string = "";
+  @Output() openModal = new EventEmitter<void>();
+
+   handleClick() {
+    this.openModal.emit();
+  }
 }

@@ -12,19 +12,37 @@
       <label>
         Funcionário:
         <select formControlName="employerId">
-          @for (emp of employees; track $index) {
-            <option [value]="emp.id">
-              {{ emp.name }}
-            </option>
+          @for (emp of employees; track emp.id) {
+          <option [value]="emp.id">
+            {{ emp.name }}
+          </option>
           }
         </select>
+      </label>
+      <label>
+        Status:
+        <div class="status-options">
+          @for(option of statusOptions; track option.value) {
+          <div class="checkbox-item">
+            <input
+              type="checkbox"
+              [checked]="employerForm.value.status?.includes(option.value)"
+              (change)="toggleStatus(option.value, $event.target.checked)"
+            />
+            <label class="checkbox-label">{{ option.label }}</label>
+          </div>
+          }
+        </div>
       </label>
     </div>
 
     <footer>
-      <app-primary-button label="Selecionar" (click)="applyFilters()" [isDisabled]="employerForm.invalid"></app-primary-button>
+      <app-primary-button
+        label="Selecionar"
+        (click)="applyFilters()"
+        [isDisabled]="employerForm.invalid"
+      ></app-primary-button>
     </footer>
   </div>
 </div>
 }
-

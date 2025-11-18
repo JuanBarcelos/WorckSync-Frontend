@@ -1,7 +1,7 @@
-<div class="card">
+<div class="card" [routerLink]="cardData.router" >
   <div class="icon">
     <i [class]="cardData.iconClass"></i>
   </div>
-  <h5 class="title">{{cardData.title}}</h5>
-  <p class="description">{{cardData.description}}</p>
+  <h5 class="title">{{ cardData.title }}</h5>
+  <p class="description">{{ cardData.description }}</p>
 </div>

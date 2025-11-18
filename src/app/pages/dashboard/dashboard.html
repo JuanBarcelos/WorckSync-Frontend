@@ -4,8 +4,8 @@
       <h1>Olá, userName! Bem-vindo ao WorckSync</h1>
       <h2>Gerencie os registros de ponto, turnos e funcionários em um só lugar. Tudo simples, rápido e organizado.</h2>
       <div class="dashboard-btns">
-        <app-primary-button label="Importar Registros"></app-primary-button>
-        <app-secondary-button label="Consultar Registros"></app-secondary-button>
+        <app-primary-button label="Importar Registros" (click)="navigateImports()"></app-primary-button>
+        <app-secondary-button label="Consultar Registros" (click)="navigateRecords()"></app-secondary-button>
       </div>
     </div>
     <div class="dashboard-img">

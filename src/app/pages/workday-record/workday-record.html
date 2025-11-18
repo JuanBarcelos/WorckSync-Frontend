@@ -1,62 +1,93 @@
 <main>
-  @if(timeRecords.length > 0){
-  <div class="timeRecord-header">
-    <div class="title">
-      <h1>Registros do {{filters.employerName}}</h1>
+  @if(!filters?.employerId){
+    <div class="time-records-title">
+      <h1>Registros de Jornada</h1>
       <h2>Visualizar e gerenciar registros de presença dos funcionários</h2>
     </div>
-    <div class="timeRecord-btn">
-      <app-secondary-button
-        label="Filtros"
-        [icon]="true"
-        iconClass="ph ph-funnel-simple"
-      ></app-secondary-button>
-      <app-primary-button
-        label="Baixar Relatório"
-        [icon]="true"
-        iconClass="ph ph-file-arrow-down"
-      ></app-primary-button>
-    </div>
-  </div>
-
-  <div class="timeRecord-body">
-    <div class="timeRecord-info">
-      <h4>Total de Horas no Mês</h4>
-      <p>{{totalWorkedHours(timeRecords)}}</p>
-    </div>
-    <div class="timeRecord-info timeRecord-border">
-      <h4>Dias Trabalhados</h4>
-      <p>{{`${timeRecords.length}/${diasNoMesAtual}`}}</p>
-    </div>
-    <div class="timeRecord-info">
-      <h4>Total de Hora Extra</h4>
-      <p>{{totalOvertimeMinutes(timeRecords)}}</p>
-    </div>
-  </div>
-
-  <div class="cards">
-    @for (record of timeRecords; track record.id) {
-    <app-time-card [record]="record" (recordUpdated)="onRecordUpdated($event)"></app-time-card>
-    }
-  </div>
-  }@else {
-  <div class="time-records-title">
-    <h1>Registros de Jornada</h1>
-    <h2>Visualizar e gerenciar registros de presença dos funcionários</h2>
-  </div>
-  <div class="wrapper">
-    <div class="time-records-body">
-      <i class="ph ph-users"></i>
-      <div class="body-title">
-        <h3>Escolher funcionário</h3>
-        <p>Selecione um funcionário para ver seus registros de horas.</p>
+    <div class="wrapper">
+      <div class="time-records-body">
+        <i class="ph ph-users"></i>
+        <div class="body-title">
+          <h3>Escolher funcionário</h3>
+          <p>Selecione um funcionário para ver seus registros de horas.</p>
+        </div>
+        <app-primary-button
+          label="Selecionar Funcionário"
+          (openModal)="openModal()"
+        ></app-primary-button>
       </div>
-      <app-primary-button
-        label="Selecionar Funcionário"
-        (openModal)="openModal()"
-      ></app-primary-button>
     </div>
-  </div>
+  }@else if (filters.employerId && timeRecords.length === 0) {
+    <div class="timeRecord-header">
+      <div class="title">
+        <h1>Registros do {{ filters.employerName }}</h1>
+        <h2>Visualizar e gerenciar registros de presença dos funcionários</h2>
+      </div>
+      <div class="timeRecord-btn">
+        <app-secondary-button
+          label="Filtros"
+          [icon]="true"
+          iconClass="ph ph-funnel-simple"
+          (openModal)="openModal()"
+        ></app-secondary-button>
+        <app-primary-button
+          label="Baixar Relatório"
+          [icon]="true"
+          iconClass="ph ph-file-arrow-down"
+        ></app-primary-button>
+      </div>
+    </div>
+    <div class="wrapper">
+      <div class="time-records-body">
+        <i class="ph ph-warning-circle"></i>
+        <div class="body-title">
+          <h3>{{ filters.employerName }}</h3>
+          <p>Nenhum registro encontrado para os filtros aplicados</p>
+        </div>
+      </div>
+    </div>
+  }@else {
+    <div class="timeRecord-header">
+      <div class="title">
+        <h1>Registros do {{ filters.employerName }}</h1>
+        <h2>Visualizar e gerenciar registros de presença dos funcionários</h2>
+      </div>
+      <div class="timeRecord-btn">
+        <app-secondary-button
+          label="Filtros"
+          [icon]="true"
+          iconClass="ph ph-funnel-simple"
+          (openModal)="openModal()"
+        ></app-secondary-button>
+        <app-primary-button
+          label="Baixar Relatório"
+          [icon]="true"
+          iconClass="ph ph-file-arrow-down"
+        ></app-primary-button>
+      </div>
+    </div>
+
+    <div class="timeRecord-body">
+      <div class="timeRecord-info">
+        <h4>Total de Horas no Mês</h4>
+        <p>{{ totalWorkedHours(timeRecords) }}</p>
+      </div>
+      <div class="timeRecord-info timeRecord-border">
+        <h4>Dias Trabalhados</h4>
+        <p>{{`${timeRecords.length}/${diasNoMesAtual}`}}</p>
+      </div>
+      <div class="timeRecord-info">
+        <h4>Total de Hora Extra</h4>
+        <p>{{ totalOvertimeMinutes(timeRecords) }}</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      @for (record of timeRecords; track record.id) {
+      <app-time-card [record]="record" (recordUpdated)="onRecordUpdated($event)"></app-time-card>
+      }
+    </div>
+
   }
 
   <app-filter-modal
@@ -64,5 +95,4 @@
     (close)="closeModal()"
     (apply)="handleApplyFilters($event)"
   ></app-filter-modal>
-
 </main>
