@@ -1,0 +1,20 @@
+<!-- Só aparece quando não está "idle" -->
+@if(_loading.state !== 'idle'){
+<div class="overlay">
+  <div class="modal">
+    <!-- Área do ícone -->
+    <div class="icon-area">
+      <!-- ícone de loading -->
+      @if (_loading.state === 'loading') {
+        <div class="spinner"></div>
+      }
+      @if(_loading.state === 'done') {
+        <!-- ícone de sucesso -->
+        <div class="check">✔</div>
+      }
+    </div>
+    <!-- Mensagem -->
+    <p class="message">{{ _loading.message }}</p>
+  </div>
+</div>
+}

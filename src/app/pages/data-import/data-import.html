@@ -39,7 +39,7 @@
           <h3>Arquivos Enviados</h3>
           <p>Revise seus arquivos enviados antes de processar</p>
         </div>
-        <app-primary-button label="Processar Dados" [icon]="true" iconClass="ph ph-upload-simple"></app-primary-button>
+        <app-primary-button label="Processar Dados" [icon]="true" iconClass="ph ph-upload-simple"(click)="onProcessFile(stats.id)"></app-primary-button>
       </div>
 
       <div class="received-content">
@@ -57,3 +57,5 @@
     </div>
   }
 </main>
+
+<app-loading-modal></app-loading-modal>
