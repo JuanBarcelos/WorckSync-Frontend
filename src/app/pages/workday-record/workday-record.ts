@@ -6,7 +6,7 @@ import { FilterModal } from '../../components/shared/filter-modal/filter-modal';
 import { TimeRecordsService } from '../../services/time-records';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
-import { take } from 'rxjs';
+import { switchMap, take } from 'rxjs';
 import type { ITimeRecords } from '../../interfaces/timeRecords';
 import {
   calculateTotalHours,
@@ -16,6 +16,8 @@ import { ReportService } from '../../services/report';
 import { LoadingService } from '../../services/loading';
 import type { IReportRequest } from '../../interfaces/report';
 import { LoadingModal } from '../../components/shared/loading-modal/loading-modal';
+import { UploadFileService } from '../../services/upload-file';
+import type { IProcessSingleDayRequest } from '../../interfaces/process';
 
 dayjs.extend(duration);
 
@@ -29,6 +31,7 @@ export class WorkdayRecord {
   private readonly _timeRecordService = inject(TimeRecordsService);
   private readonly _reportService = inject(ReportService);
   private readonly _loadingService = inject(LoadingService);
+  private readonly _uploadService = inject(UploadFileService);
 
   timeRecords: ITimeRecords[] = [];
   showModal = false;
@@ -68,7 +71,7 @@ export class WorkdayRecord {
     this.showModal = false;
   }
 
-  handleDownloadReport(employerID: string,employerName: string) {
+  handleDownloadReport(employerID: string, employerName: string) {
     this._loadingService.start('Gerando relatório...');
     const data: IReportRequest = {
       type: 'MONTHLY_SUMMARY',
@@ -95,15 +98,34 @@ export class WorkdayRecord {
   onRecordUpdated(timeRecord: ITimeRecords) {
     this._timeRecordService
       .updateTimeRecord(timeRecord)
-      .pipe(take(1))
-      .subscribe({
-        next: (response) => {
-          // Atualiza a lista local substituindo o registro alterado
+      .pipe(
+        take(1),
+        // quando salvar o registro → chamar o processamento do dia
+        switchMap((response) => {
+          // 1. Atualiza a lista local
           this.timeRecords = this.timeRecords.map((record) =>
             record.id === response.id ? response : record
           );
+
+          // 2. Prepara o body para processar o dia
+          const data: IProcessSingleDayRequest = {
+            date: timeRecord.date,
+            employeeId: this.filters.employerId,
+            generateOccurrences: false,
+            updateExisting: true,
+          };
+
+          // 3. Retorna o observable da segunda requisição
+          return this._uploadService.processSingleDay(data);
+        })
+      )
+      .subscribe({
+        next: (response) => {
+          console.log('Dia processado com sucesso!', response);
         },
-        error: (err) => console.error('Erro ao atualizar registro', err),
+        error: (err) => {
+          console.error('Erro ao atualizar ou processar o registro', err);
+        },
       });
   }
 

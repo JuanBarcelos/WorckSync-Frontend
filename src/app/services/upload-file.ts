@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import type { ImportResponse } from '../interfaces/upload-success-response';
 import type { Observable } from 'rxjs';
-import type { IProcess } from '../interfaces/process';
+import type { IProcess, IProcessSingleDayRequest, IProcessSingleDayResponse } from '../interfaces/process';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,12 @@ export class UploadFileService {
 
     return this._httpClient.post<ImportResponse>('http://localhost:3333/api/imports/upload', formData)
   };
-  
+
   process(id:string): Observable<IProcess>{
     return this._httpClient.post<IProcess>(`http://localhost:3333/api/imports/${id}/process`,{});
+  }
+
+  processSingleDay(data: IProcessSingleDayRequest): Observable<IProcessSingleDayResponse> {
+     return this._httpClient.post<IProcessSingleDayResponse>(`http://localhost:3333/api/processing/single-day`, data);
   }
 }
