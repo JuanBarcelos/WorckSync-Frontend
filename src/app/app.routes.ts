@@ -7,11 +7,13 @@ import { Shift } from './pages/shift/shift';
 import { DataImport } from './pages/data-import/data-import';
 import { WorkdayRecord } from './pages/workday-record/workday-record';
 import { authGuard } from './guards/auth-guard';
+import { LoginAuthGuard } from './guards/login-auth-guard';
 
 export const routes: Routes = [
   {
     path: 'login',
     component: Login,
+    canActivate: [LoginAuthGuard]
   },
   {
     path: '',
