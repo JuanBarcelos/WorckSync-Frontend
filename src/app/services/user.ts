@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { IAuthSuccessResponse } from '../interfaces/auth-success-response';
 import type { Observable } from 'rxjs';
 import type { ILoginSuccessResponse } from '../interfaces/login-success-response';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class UserService {
   private readonly _httpClient = inject(HttpClient);
 
   validateUser():Observable<IAuthSuccessResponse> {
-    return this._httpClient.get<IAuthSuccessResponse>('http://localhost:3333/api/auth/profile');
+    return this._httpClient.get<IAuthSuccessResponse>(environment.apiURL + '/auth/profile');
   }
 
   Login(email: string, password: string): Observable<ILoginSuccessResponse> {
@@ -20,6 +21,6 @@ export class UserService {
       password
     }
 
-    return this._httpClient.post<ILoginSuccessResponse>('http://localhost:3333/api/auth/login', body);
+    return this._httpClient.post<ILoginSuccessResponse>(environment.apiURL + '/auth/login', body);
   }
 }
