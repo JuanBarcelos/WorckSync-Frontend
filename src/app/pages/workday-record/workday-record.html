@@ -59,10 +59,12 @@
           iconClass="ph ph-funnel-simple"
           (openModal)="openModal()"
         ></app-secondary-button>
+
         <app-primary-button
           label="Baixar Relatório"
           [icon]="true"
           iconClass="ph ph-file-arrow-down"
+          (click)="handleDownloadReport(filters.employerId, filters.employerName)"
         ></app-primary-button>
       </div>
     </div>
@@ -96,3 +98,5 @@
     (apply)="handleApplyFilters($event)"
   ></app-filter-modal>
 </main>
+
+<app-loading-modal></app-loading-modal>
