@@ -15,5 +15,5 @@ export interface IReportRequest {
   format: string;
   month: number;
   year: number;
-  employeeId: string;
+  employeeId?: string;
 }
