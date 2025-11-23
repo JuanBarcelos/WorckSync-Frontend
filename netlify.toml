@@ -1,6 +1,6 @@
 [build]
 command = "ng build"
-publish = "dist/dist/work-sync/browser"
+publish = "dist/work-sync/browser"
 
 [[redirects]]
 from = "/*"
