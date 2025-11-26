@@ -4,12 +4,8 @@ import type { IShift } from './shift';
 export interface INewEmployerRequest {
   sheetId: string;
   name: string;
-  email: string;
-  phone: string;
-  document: string;
   position: string;
   department: string;
-  admissionDate: string;
   shiftId: string;
 }
 
@@ -18,13 +14,8 @@ export interface INewEmployerResponse {
     id: string;
     sheetId: string;
     name: string;
-    email: string;
-    phone: string;
-    document: string;
     position: string;
     department: string;
-    admissionDate: string;
-    dismissalDate: null;
     isActive: true;
     shiftId: string;
     createdAt: string;
@@ -37,13 +28,8 @@ export interface IEmployee {
   id: string;
   sheetId: string;
   name: string;
-  email: string;
-  phone: string;
-  document: string;
   position: string;
   department: string;
-  admissionDate: string;
-  dismissalDate: string | null;
   isActive: boolean;
   shiftId: string;
   createdAt: string;

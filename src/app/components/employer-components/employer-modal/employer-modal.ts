@@ -13,7 +13,6 @@ import type { IEmployee, INewEmployerRequest } from '../../../interfaces/employe
 import { take } from 'rxjs';
 import { ShiftService } from '../../../services/shift';
 import type { IShift } from '../../../interfaces/shift';
-import dayjs from 'dayjs';
 
 @Component({
   selector: 'app-employer-modal',
@@ -34,12 +33,8 @@ export class EmployerModal implements OnInit, OnChanges{
   employerForm = new FormGroup({
     sheetId: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', [Validators.required]),
-    document: new FormControl('', [Validators.required]),
     position: new FormControl('', [Validators.required]),
     department: new FormControl('', [Validators.required]),
-    admissionDate: new FormControl('', [Validators.required]),
     shiftId: new FormControl('', [Validators.required]),
   });
 
@@ -51,7 +46,6 @@ export class EmployerModal implements OnInit, OnChanges{
     if (this.employer) {
       this.employerForm.patchValue({
         ...this.employer,
-        admissionDate: dayjs(this.employer.admissionDate).locale('pt-br').format("DD/MM/YYYY")
       })
     } else {
       this.employerForm.reset();
@@ -63,12 +57,8 @@ export class EmployerModal implements OnInit, OnChanges{
     const newEmployer: INewEmployerRequest = {
       sheetId: this.employerForm.value.sheetId as string,
       name: this.employerForm.value.name as string,
-      email: this.employerForm.value.email as string,
-      phone: this.employerForm.value.phone as string,
-      document: this.employerForm.value.document as string,
       position: this.employerForm.value.position as string,
       department: this.employerForm.value.department as string,
-      admissionDate: this.employerForm.value.admissionDate as string,
       shiftId: this.employerForm.value.shiftId as string,
     };
 
