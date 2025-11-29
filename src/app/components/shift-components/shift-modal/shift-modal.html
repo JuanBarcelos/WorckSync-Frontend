@@ -2,7 +2,7 @@
 <section class="overlay">
   <main class="modal">
     <header>
-      <<h2>{{ shift ? 'Atualizar de Turno' : 'Cadastro de Turno'}}</h2>
+      <h2>{{ shift ? 'Atualizar de Turno' : 'Cadastro de Turno'}}</h2>
       <button class="close" (click)="close.emit()">
         <i class="ph ph-x"></i>
       </button>
@@ -16,15 +16,6 @@
             type="text"
             placeholder="Nome do Funcionário"
             formControlName="name"
-          />
-        </div>
-        <div class="input-group">
-          <label for="code">Código</label>
-          <input
-            name="code"
-            type="text"
-            placeholder="Abreviação do Nome do turno"
-            formControlName="code"
           />
         </div>
         <div class="input-group">
@@ -70,15 +61,7 @@
             type="text"
             placeholder="Escreva em minutos EX: 15"
             formControlName="toleranceMinutes"
-          />
-        </div>
-        <div class="input-group">
-          <label for="description">Descrição</label>
-          <input
-            name="description"
-            type="text"
-            placeholder="Escreva uma breve descrição sobre o turno"
-            formControlName="description"
+            pattern="[0-9]*"
           />
         </div>
       </form>

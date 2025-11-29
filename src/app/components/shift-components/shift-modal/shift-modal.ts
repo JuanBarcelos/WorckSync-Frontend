@@ -17,13 +17,11 @@ export class ShiftModal implements OnChanges{
 
   shiftForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    code: new FormControl('', [Validators.required]),
     startTime: new FormControl('', [Validators.required]),
     endTime: new FormControl('', [Validators.required]),
     lunchStartTime: new FormControl('', [Validators.required]),
     lunchEndTime: new FormControl('', [Validators.required]),
-    toleranceMinutes: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
+    toleranceMinutes: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
   });
 
   ngOnChanges(): void {
@@ -44,15 +42,12 @@ export class ShiftModal implements OnChanges{
 
     const newShift: INewShiftRequest = {
       name: this.shiftForm.value.name as string,
-      code: this.shiftForm.value.code as string,
       startTime: this.shiftForm.value.startTime as string,
       endTime: this.shiftForm.value.endTime as string,
       lunchStartTime: this.shiftForm.value.lunchStartTime as string,
       lunchEndTime: this.shiftForm.value.lunchEndTime as string,
-      workDays: [1,3,5,7],
       toleranceMinutes: Number(this.shiftForm.value.toleranceMinutes),
-      overtimeAllowed: true,
-      description: this.shiftForm.value.description as string
+      overtimeAllowed: true
     }
 
     this.apply.emit(newShift);

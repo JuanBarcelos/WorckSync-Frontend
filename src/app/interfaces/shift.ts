@@ -2,21 +2,17 @@ import type { IMeta } from './meta-interface';
 
 export interface INewShiftRequest {
   name: string;
-  code: string;
   startTime: string;
   endTime: string;
   lunchStartTime: string;
   lunchEndTime: string;
-  workDays: number[];
   toleranceMinutes: number;
   overtimeAllowed: boolean;
-  description: string;
 }
 
 export interface INewShiftResponse {
   id: string;
   name: string;
-  code: string;
   startTime: string;
   endTime: string;
   lunchStartTime: string;
@@ -24,7 +20,6 @@ export interface INewShiftResponse {
   workDays: string;
   toleranceMinutes: number;
   overtimeAllowed: boolean;
-  description: string;
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
@@ -33,15 +28,12 @@ export interface INewShiftResponse {
 export interface IShift {
   id: string;
   name: string;
-  code: string;
   startTime: string;
   endTime: string;
   lunchStartTime: string;
-  lunchEndTime: string;
-  workDays: number[]; // ou number[] se o backend enviar array real
+  lunchEndTime: string; // ou number[] se o backend enviar array real
   toleranceMinutes: number;
   overtimeAllowed: boolean;
-  description: string;
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
