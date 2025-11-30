@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiURL: 'https://worcksync.onrender.com/api'
+  apiURL: 'https://worcksync-backend.onrender.com/api'
 };
