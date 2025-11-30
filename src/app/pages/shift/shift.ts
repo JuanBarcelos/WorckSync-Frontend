@@ -6,6 +6,7 @@ import type { INewShiftRequest, IShift } from '../../interfaces/shift';
 import { ShiftService } from '../../services/shift';
 import { take } from 'rxjs';
 import { ShiftModal } from '../../components/shift-components/shift-modal/shift-modal';
+import { NotificationService } from '../../services/notification';
 
 @Component({
   selector: 'app-shift',
@@ -15,6 +16,7 @@ import { ShiftModal } from '../../components/shift-components/shift-modal/shift-
 })
 export class Shift implements OnInit {
   private readonly _shiftService = inject(ShiftService);
+  private readonly _notificationService = inject(NotificationService);
 
   shifts: IShift[] = [];
   showModal = false;
@@ -51,9 +53,14 @@ export class Shift implements OnInit {
         next: () => {
           this.closeModal();
           this.getShift();
+          this._notificationService.showSuccess(
+            'O novo turno foi cadastrado com sucesso e já está disponível para uso.',
+            'Turno criado'
+          );
         },
         error: (err) => {
           console.log(err);
+          this._notificationService.showError(err.error.message, 'Error ao cadastrar o turno');
         },
       });
   }
@@ -66,9 +73,14 @@ export class Shift implements OnInit {
         next: () => {
           this.closeModal();
           this.getShift();
+          this._notificationService.showWarning(
+            'O turno foi removido com sucesso do sistema.',
+            'Turno excluído'
+          );
         },
         error: (err) => {
           console.log(err);
+          this._notificationService.showError(err.error.message, 'Erro ao excluir turno');
         },
       });
   }
@@ -81,9 +93,14 @@ export class Shift implements OnInit {
         next: () => {
           this.closeModal();
           this.getShift();
+          this._notificationService.showSuccess(
+            'As informações do turno foram atualizadas com sucesso.',
+            'Turno atualizado'
+          );
         },
         error: (err) => {
           console.log(err);
+          this._notificationService.showError(err.error.message, 'Erro ao atualizar turno');
         },
       });
   }

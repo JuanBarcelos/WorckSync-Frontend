@@ -18,6 +18,7 @@ import type { IReportRequest } from '../../interfaces/report';
 import { LoadingModal } from '../../components/shared/loading-modal/loading-modal';
 import { UploadFileService } from '../../services/upload-file';
 import type { IProcessSingleDayRequest } from '../../interfaces/process';
+import { NotificationService } from '../../services/notification';
 
 dayjs.extend(duration);
 
@@ -32,6 +33,7 @@ export class WorkdayRecord {
   private readonly _reportService = inject(ReportService);
   private readonly _loadingService = inject(LoadingService);
   private readonly _uploadService = inject(UploadFileService);
+  private readonly _notificationService = inject(NotificationService);
 
   timeRecords: ITimeRecords[] = [];
   showModal = false;

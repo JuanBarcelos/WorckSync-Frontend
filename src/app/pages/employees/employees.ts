@@ -6,6 +6,7 @@ import { EmployerService } from '../../services/employer';
 import { EmployerModal } from '../../components/employer-components/employer-modal/employer-modal';
 import { take } from 'rxjs';
 import { EmployerCard } from '../../components/employer-components/employer-card/employer-card';
+import { NotificationService } from '../../services/notification';
 
 @Component({
   selector: 'app-employees',
@@ -15,6 +16,7 @@ import { EmployerCard } from '../../components/employer-components/employer-card
 })
 export class Employees implements OnInit {
   private readonly _employerService = inject(EmployerService);
+  private readonly _notificationService = inject(NotificationService);
 
   employees: IEmployee[] = [];
   showModal = false;
@@ -52,9 +54,17 @@ export class Employees implements OnInit {
         next: () => {
           this.closeModal();
           this.getEmployer();
+          this._notificationService.showSuccess(
+            'O funcionário foi cadastrado com sucesso e já está disponível na folha de ponto.',
+            'Cadastro realizado'
+          );
         },
         error: (err) => {
           console.log(err);
+          this._notificationService.showError(
+            err.error.message,
+            'Error ao cadastrar o funcionário'
+          );
         },
       });
   }
@@ -67,9 +77,17 @@ export class Employees implements OnInit {
         next: () => {
           this.closeModal();
           this.getEmployer();
+          this._notificationService.showSuccess(
+            'As informações do funcionário foram atualizadas com sucesso.',
+            'Dados atualizados'
+          );
         },
         error: (err) => {
           console.log(err);
+          this._notificationService.showError(
+            err.error.message,
+            'Error ao atualizar o funcionário'
+          );
         },
       });
   }
@@ -82,9 +100,14 @@ export class Employees implements OnInit {
         next: () => {
           this.closeModal();
           this.getEmployer();
+                    this._notificationService.showWarning(
+            'O cadastro do funcionário foi excluído com sucesso.',
+            'Funcionário excluído'
+          );
         },
         error: (err) => {
           console.log(err);
+          this._notificationService.showError(err.error.message, 'Erro ao excluir funcionário');
         },
       });
   }

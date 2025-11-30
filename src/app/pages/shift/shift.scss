@@ -5,6 +5,7 @@ main{
   height: 100%;
   color: var.$primary-text-color;
   .shift-header{
+    min-width: 150rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
